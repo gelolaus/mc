@@ -18,17 +18,17 @@ export function ServerList({ initial }: { initial: Server[] | null }) {
 
   if (!servers) {
     return (
-      <GuiPanel>
+      <GuiPanel className="server-list">
         <div className="server-row">
           <span className="offline">●</span>
-          <div><b className="pixel">Status unavailable</b><div className="meta">API unreachable</div></div>
+          <b className="pixel">Offline</b>
         </div>
       </GuiPanel>
     );
   }
 
   return (
-    <GuiPanel>
+    <GuiPanel className="server-list">
       {servers.map((server) => <ServerRow key={server.serverKey} server={server} />)}
     </GuiPanel>
   );

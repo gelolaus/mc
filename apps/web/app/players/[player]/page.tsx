@@ -29,7 +29,7 @@ export default async function PlayerPage({ params }: { params: Promise<{ player:
       <GuiPanel className="book-page">
         <div className="facts">
           <div><div className="meta">FIRST JOINED</div><b>{date(player.firstJoinedAt)}</b></div>
-          <div><div className="meta">LAST SEEN</div><b>{player.online ? 'Online now' : date(player.lastSeenAt)}</b></div>
+          <div><div className="meta">LAST SEEN</div><b>{player.online ? 'Online' : date(player.lastSeenAt)}</b></div>
           <div><div className="meta">PLAYTIME</div><b>{duration(player.playtimeSeconds, true)}</b></div>
           <div><div className="meta">SESSIONS</div><b>{player.sessionCount}</b></div>
         </div>

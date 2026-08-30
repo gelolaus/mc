@@ -7,7 +7,7 @@ export default async function World() {
 
   return (
     <section className="section">
-      <h1 className="pixel" style={{ fontSize: 'clamp(42px, 6vw, 64px)' }}>Our World</h1>
+      <h1 className="pixel" style={{ fontSize: 'clamp(42px, 6vw, 64px)' }}>World</h1>
       {world ? (
         <>
           <div className="stats-row">
@@ -16,10 +16,10 @@ export default async function World() {
             <StatBadge label="PEOPLE" value={world.totalPlayers} />
             <StatBadge label="PLAYTIME" value={duration(world.totalPlaytimeSeconds, true)} />
             <StatBadge label="SERVER" value={world.online ? 'ONLINE' : 'OFFLINE'} />
-            <StatBadge label="VERSION" value={world.version ?? 'Status unavailable'} />
+            <StatBadge label="VERSION" value={world.version ?? '—'} />
           </div>
           <div className="section">
-            <h2 className="pixel">World map</h2>
+            <h2 className="pixel">Map</h2>
             <MapFrame />
           </div>
         </>

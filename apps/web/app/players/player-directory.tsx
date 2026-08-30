@@ -24,11 +24,11 @@ export function PlayerDirectory({ initial }: { initial: Player[] }) {
     <>
       <input className="gui-input" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search players…" aria-label="Search players" />
       <div className="section">
-        <h2 className="pixel">Online now</h2>
-        {online.length ? <PlayerStrip players={online} /> : <p className="sub">Nobody is online right now.</p>}
+        <h2 className="pixel">Online</h2>
+        {online.length > 0 && <PlayerStrip players={online} />}
       </div>
       <div className="section">
-        <h2 className="pixel">Everyone</h2>
+        <h2 className="pixel">All</h2>
         <PlayerGrid players={players} />
       </div>
     </>

@@ -10,7 +10,7 @@ const mono = localFont({ src: '../fonts/jetbrains-mono-latin-wght-normal.woff2',
 const display = localFont({ src: '../fonts/syne-latin-wght-normal.woff2', variable: '--font-mc-display', weight: '400 800', display: 'swap' });
 const pixel = Press_Start_2P({ weight: '400', subsets: ['latin'], variable: '--font-mc-pixel', display: 'swap' });
 
-export const metadata: Metadata = { title: 'JPCS-APC Minecraft', description: 'The permanent Minecraft world of the JPCS-APC community.' };
+export const metadata: Metadata = { title: 'JPCS-APC Minecraft', description: 'JPCS-APC Minecraft server status and player list.' };
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
   const servers = await api<Server[]>('/servers');
@@ -21,7 +21,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
       <body>
         <SiteHeader anyOnline={anyOnline} />
         <main className="shell">{children}</main>
-        <footer className="shell"><b>JPCS-APC MINECRAFT</b><br />This world isn&apos;t going anywhere.</footer>
+        <footer className="nether-footer">Created by <a href="https://gelolaus.com">gelolaus.com</a></footer>
       </body>
     </html>
   );

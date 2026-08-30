@@ -1,5 +1,9 @@
 node_modules
 .next
+.next-*
+apps/web/public/images/jpcs-caves.png
+apps/web/public/images/jpcs-nether.png
+apps/web/public/images/jpcs-world-hero.png
 dist
 .env
 .vercel

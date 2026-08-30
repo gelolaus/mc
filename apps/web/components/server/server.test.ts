@@ -9,6 +9,8 @@ describe('server list', () => {
     expect(row).toContain('server-row');
     expect(row).toContain('displayName');
     expect(row).toContain('playersOnline');
+    expect(row).toContain('server-beacon');
+    expect(list).toContain('server-list');
     expect(list).toContain('/v1/servers');
     expect(list).toContain('30000');
   });
