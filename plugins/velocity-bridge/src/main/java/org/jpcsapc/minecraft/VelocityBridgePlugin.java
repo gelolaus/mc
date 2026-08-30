@@ -27,7 +27,7 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
 
-@Plugin(id = "jpcsvelocitybridge", name = "JPCS Velocity Bridge", version = "1.0.0")
+@Plugin(id = "jpcsvelocitybridge", name = "JPCS Velocity Bridge", version = "1.0.1")
 public final class VelocityBridgePlugin {
   private final ProxyServer proxy;
   private final Logger logger;
