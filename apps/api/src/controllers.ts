@@ -1,6 +1,6 @@
 import { Body, Controller, Get, HttpCode, Post, Query, UnauthorizedException, UseGuards, CanActivate, ExecutionContext, Injectable, Param } from '@nestjs/common';
 import { timingSafeEqual } from 'node:crypto';
-import { HeartbeatDto, JoinDto, PlayerQueryDto, PlayerServerDto, QuitDto, StartDto, StopDto } from './dto';
+import { HeartbeatDto, JoinDto, PlayerQueryDto, PlayerServerDto, PlayerSkinDto, QuitDto, StartDto, StopDto } from './dto';
 import { IngestionService } from './ingestion.service';
 import { PlayersService } from './players.service';
 import { ServerService } from './server.service';
@@ -34,6 +34,7 @@ export class IngestionController {
   @Post('players/join') @HttpCode(200) join(@Body() data: JoinDto) { return this.ingestion.join(data); }
   @Post('players/quit') @HttpCode(200) quit(@Body() data: QuitDto) { return this.ingestion.quit(data); }
   @Post('players/server') @HttpCode(200) playerServer(@Body() data: PlayerServerDto) { return this.ingestion.playerServer(data); }
+  @Post('players/skin') @HttpCode(200) playerSkin(@Body() data: PlayerSkinDto) { return this.ingestion.playerSkin(data); }
   @Post('server/start') @HttpCode(200) start(@Body() data: StartDto) { return this.ingestion.start(data); }
   @Post('server/stop') @HttpCode(200) stop(@Body() data: StopDto) { return this.ingestion.stop(data); }
 }

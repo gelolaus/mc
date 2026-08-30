@@ -1,2 +1,69 @@
-import Link from 'next/link'; import {api,type Player,type Server} from '../lib/api'; import {date,duration} from '../lib/format'; import {CopyIp,LiveStatus,PlayerCard} from '../components';
-export default async function Home(){const [servers,newest,players]=await Promise.all([api<Server[]>('/servers'),api<Player[]>('/players/new'),api<Player[]>('/players')]);const first=servers?.[0];const host=first?.host??'mc.jpcs-apc.org';const online=servers?.filter(s=>s.online)??[];return <><section className="hero"><div className="eyebrow">JPCS-APC MINECRAFT</div><h1>Our forever world.</h1><p className="lede">A Minecraft world for the JPCS-APC community, built together and kept for the long run.</p><div className="ip"><span>{host}</span><CopyIp host={host}/></div><LiveStatus initial={servers}/><p className="meta">WORLD CREATED {first?date(first.worldCreatedAt):'Status unavailable'} · WORLD AGE {first?duration(first.worldAgeSeconds,true):'—'}</p></section><section className="section"><div className="section-top"><div><h2>New to the World</h2><p className="sub">The newest people to join our world.</p></div></div>{newest?.length?<div className="players">{newest.map(p=><PlayerCard key={p.minecraftUuid} player={p}/>)}</div>:<div className="empty">Player records will appear here once the bridge is connected.</div>}</section><section className="section"><div className="section-top"><div><h2>The Players</h2><p className="sub">{players?.length??0} people have called this world home.</p></div><Link href="/players">Explore everyone →</Link></div>{players?.length?<div className="players">{players.slice(0,12).map(p=><PlayerCard key={p.minecraftUuid} player={p}/>)}</div>:<p className="sub">The player directory will grow with the world.</p>}</section><section className="section"><h2>World stats</h2><div className="stats"><div><b>{players?.length??'—'}</b><span className="meta">PLAYERS</span></div><div><b>{first?duration(first.worldAgeSeconds):'—'}</b><span className="meta">WORLD AGE</span></div><div><b>{online.reduce((n,s)=>n+(s.playersOnline??0),0)}</b><span className="meta">ONLINE</span></div><div><b>{online.length}</b><span className="meta">SERVERS ONLINE</span></div></div></section></>}
+import Link from 'next/link';
+import { CopyIp, PlayerGrid, PlayerStrip, ServerList, StatBadge } from '../components';
+import { api, type Player, type Server } from '../lib/api';
+import { date, duration } from '../lib/format';
+
+export default async function Home() {
+  const [servers, newest, players] = await Promise.all([
+    api<Server[]>('/servers'),
+    api<Player[]>('/players/new'),
+    api<Player[]>('/players'),
+  ]);
+  const first = servers?.[0];
+  const host = first?.host ?? 'mc.jpcs-apc.org';
+  const onlineServers = servers?.filter((server) => server.online) ?? [];
+  const onlinePlayers = players?.filter((player) => player.online) ?? [];
+
+  return (
+    <>
+      <section className="hero">
+        <div className="eyebrow pixel">JPCS-APC MINECRAFT</div>
+        <h1 className="pixel">Our forever world.</h1>
+        <p className="lede">A Minecraft world for the JPCS-APC community, built together and kept for the long run.</p>
+        <div className="gui-panel ip-row">
+          <span className="meta pixel">{host}</span>
+          <CopyIp host={host} />
+        </div>
+        <ServerList initial={servers} />
+        <p className="meta">WORLD CREATED {first ? date(first.worldCreatedAt) : 'Status unavailable'} · WORLD AGE {first ? duration(first.worldAgeSeconds, true) : '—'}</p>
+      </section>
+
+      <section className="section">
+        <h2 className="pixel">Who&apos;s home</h2>
+        <p className="sub">Players online right now.</p>
+        {onlinePlayers.length ? <PlayerStrip players={onlinePlayers} /> : <div className="empty">No one&apos;s online right now.</div>}
+      </section>
+
+      <section className="section">
+        <div className="section-top">
+          <div>
+            <h2 className="pixel">New to the world</h2>
+            <p className="sub">The newest people to join our world.</p>
+          </div>
+        </div>
+        {newest?.length ? <PlayerGrid players={newest} /> : <div className="empty">Player records will appear here once the bridge is connected.</div>}
+      </section>
+
+      <section className="section">
+        <div className="section-top">
+          <div>
+            <h2 className="pixel">The players</h2>
+            <p className="sub">{players?.length ?? 0} people have called this world home.</p>
+          </div>
+          <Link href="/players">Explore everyone →</Link>
+        </div>
+        {players?.length ? <PlayerGrid players={players.slice(0, 12)} /> : <p className="sub">The player directory will grow with the world.</p>}
+      </section>
+
+      <section className="section">
+        <h2 className="pixel">World stats</h2>
+        <div className="stats-row">
+          <StatBadge label="PLAYERS" value={players?.length ?? '—'} />
+          <StatBadge label="WORLD AGE" value={first ? duration(first.worldAgeSeconds) : '—'} />
+          <StatBadge label="ONLINE" value={onlineServers.reduce((total, server) => total + (server.playersOnline ?? 0), 0)} />
+          <StatBadge label="SERVERS ONLINE" value={onlineServers.length} />
+        </div>
+      </section>
+    </>
+  );
+}

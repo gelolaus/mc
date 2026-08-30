@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { DatabaseService } from './database.service';
-import { HeartbeatDto, JoinDto, PlayerServerDto, QuitDto, StartDto, StopDto } from './dto';
+import { HeartbeatDto, JoinDto, PlayerServerDto, PlayerSkinDto, QuitDto, StartDto, StopDto } from './dto';
 
 @Injectable()
 export class IngestionService {
@@ -24,7 +24,13 @@ export class IngestionService {
 
   async join(input: JoinDto) {
     const joinedAt = new Date(input.joinedAt);
-    await this.db.player.upsert({ where: { minecraftUuid: input.uuid }, create: { minecraftUuid: input.uuid, username: input.username, firstJoinedAt: joinedAt, lastJoinedAt: joinedAt, lastSeenAt: joinedAt, sessionCount: 1, online: true }, update: { username: input.username, lastJoinedAt: joinedAt, lastSeenAt: joinedAt, sessionCount: { increment: 1 }, online: true } });
+    const skin = input.skinTextureHash ? { skinTextureHash: input.skinTextureHash } : {};
+    await this.db.player.upsert({ where: { minecraftUuid: input.uuid }, create: { minecraftUuid: input.uuid, username: input.username, firstJoinedAt: joinedAt, lastJoinedAt: joinedAt, lastSeenAt: joinedAt, sessionCount: 1, online: true, ...skin }, update: { username: input.username, lastJoinedAt: joinedAt, lastSeenAt: joinedAt, sessionCount: { increment: 1 }, online: true, ...skin } });
+    return { ok: true };
+  }
+
+  async playerSkin(input: PlayerSkinDto) {
+    await this.db.player.update({ where: { minecraftUuid: input.uuid }, data: { skinTextureHash: input.skinTextureHash } });
     return { ok: true };
   }
 
