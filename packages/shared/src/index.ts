@@ -9,6 +9,6 @@ export type PublicServer = {
 
 export type PublicPlayer = {
   minecraftUuid: string; username: string; firstJoinedAt: string; lastSeenAt: string;
-  playtimeSeconds: number; sessionCount: number; online: boolean;
+  playtimeSeconds: number; sessionCount: number; online: boolean; skinTextureHash?: string | null;
 };
 

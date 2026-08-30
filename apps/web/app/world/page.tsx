@@ -1,2 +1,31 @@
-import { api, type Server } from '../../lib/api'; import { date,duration } from '../../lib/format'; export default async function World(){const world=await api<(Server&{displayName:string;totalPlayers:number;totalPlaytimeSeconds:number})>('/world');return <section className="section"><h1 style={{fontSize:'clamp(48px,8vw,72px)'}}>Our World</h1>{world?<div className="facts"><div><div className="meta">ESTABLISHED</div><b>{date(world.worldCreatedAt)}</b></div><div><div className="meta">WORLD AGE</div><b>{duration(world.worldAgeSeconds,true)}</b></div><div><div className="meta">PEOPLE</div><b>{world.totalPlayers}</b></div><div><div className="meta">CUMULATIVE PLAYTIME</div><b>{duration(world.totalPlaytimeSeconds,true)}</b></div><div><div className="meta">SERVER</div><b>{world.online?'ONLINE':'OFFLINE'}</b></div><div><div className="meta">VERSION</div><b>{world.version??'Status unavailable'}</b></div></div>:<div className="empty">World statistics are unavailable.</div>}</section>}
+import { MapFrame, StatBadge } from '../../components';
+import { api, type Server } from '../../lib/api';
+import { date, duration } from '../../lib/format';
 
+export default async function World() {
+  const world = await api<Server & { displayName: string; totalPlayers: number; totalPlaytimeSeconds: number }>('/world');
+
+  return (
+    <section className="section">
+      <h1 className="pixel" style={{ fontSize: 'clamp(42px, 6vw, 64px)' }}>Our World</h1>
+      {world ? (
+        <>
+          <div className="stats-row">
+            <StatBadge label="ESTABLISHED" value={date(world.worldCreatedAt)} />
+            <StatBadge label="WORLD AGE" value={duration(world.worldAgeSeconds, true)} />
+            <StatBadge label="PEOPLE" value={world.totalPlayers} />
+            <StatBadge label="PLAYTIME" value={duration(world.totalPlaytimeSeconds, true)} />
+            <StatBadge label="SERVER" value={world.online ? 'ONLINE' : 'OFFLINE'} />
+            <StatBadge label="VERSION" value={world.version ?? 'Status unavailable'} />
+          </div>
+          <div className="section">
+            <h2 className="pixel">World map</h2>
+            <MapFrame />
+          </div>
+        </>
+      ) : (
+        <div className="empty">World statistics are unavailable.</div>
+      )}
+    </section>
+  );
+}

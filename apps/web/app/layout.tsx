@@ -1,6 +1,28 @@
-import './globals.css'; import Link from 'next/link'; import localFont from 'next/font/local'; import type { Metadata } from 'next';
+import './globals.css';
+import localFont from 'next/font/local';
+import { Press_Start_2P } from 'next/font/google';
+import type { Metadata } from 'next';
+import { api, type Server } from '../lib/api';
+import { SiteHeader } from '../components';
+
 const sans = localFont({ src: '../fonts/plus-jakarta-sans-latin-wght-normal.woff2', variable: '--font-mc-sans', weight: '200 800', display: 'swap' });
 const mono = localFont({ src: '../fonts/jetbrains-mono-latin-wght-normal.woff2', variable: '--font-mc-mono', weight: '100 800', display: 'swap' });
 const display = localFont({ src: '../fonts/syne-latin-wght-normal.woff2', variable: '--font-mc-display', weight: '400 800', display: 'swap' });
-export const metadata:Metadata={title:'JPCS-APC Minecraft',description:'The permanent Minecraft world of the JPCS-APC community.'};
-export default function Layout({children}:{children:React.ReactNode}){return <html lang="en" className={`${sans.variable} ${mono.variable} ${display.variable}`}><body><header className="shell nav"><Link className="brand" href="/">JPCS MINECRAFT</Link><nav className="links"><Link href="/players">Players</Link><Link href="/world">World</Link><Link href="/map">Map</Link></nav></header><main className="shell">{children}</main><footer className="shell"><b>JPCS-APC MINECRAFT</b><br/>This world isn&apos;t going anywhere.</footer></body></html>}
+const pixel = Press_Start_2P({ weight: '400', subsets: ['latin'], variable: '--font-mc-pixel', display: 'swap' });
+
+export const metadata: Metadata = { title: 'JPCS-APC Minecraft', description: 'The permanent Minecraft world of the JPCS-APC community.' };
+
+export default async function Layout({ children }: { children: React.ReactNode }) {
+  const servers = await api<Server[]>('/servers');
+  const anyOnline = servers?.some((server) => server.online) ?? false;
+
+  return (
+    <html lang="en" className={`${sans.variable} ${mono.variable} ${display.variable} ${pixel.variable}`}>
+      <body>
+        <SiteHeader anyOnline={anyOnline} />
+        <main className="shell">{children}</main>
+        <footer className="shell"><b>JPCS-APC MINECRAFT</b><br />This world isn&apos;t going anywhere.</footer>
+      </body>
+    </html>
+  );
+}

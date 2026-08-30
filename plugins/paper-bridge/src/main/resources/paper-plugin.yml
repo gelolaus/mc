@@ -1,0 +1,5 @@
+name: JPCS Paper Bridge
+version: 1.0.0
+main: org.jpcsapc.minecraft.PaperBridgePlugin
+api-version: '1.21'
+description: Reports applied player skins to the JPCS Minecraft API.

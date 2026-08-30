@@ -10,4 +10,19 @@ describe('site styling', () => {
     expect(layout).not.toContain("import './archive.css'");
     expect(existsSync(decorativeStylesheet)).toBe(false);
   });
+
+  it('defines minecraft gui tokens and classes', () => {
+    const css = readFileSync(fileURLToPath(new URL('./globals.css', import.meta.url)), 'utf8');
+    expect(css).toContain('--panel:');
+    expect(css).toContain('--border:');
+    expect(css).toContain('--grass:');
+    expect(css).toContain('.gui-panel');
+    expect(css).toContain('.server-row');
+    expect(css).toContain('image-rendering: pixelated');
+  });
+
+  it('loads a pixel display font in layout', () => {
+    const layout = readFileSync(fileURLToPath(new URL('./layout.tsx', import.meta.url)), 'utf8');
+    expect(layout).toContain('--font-mc-pixel');
+  });
 });

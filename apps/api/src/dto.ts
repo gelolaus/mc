@@ -8,7 +8,8 @@ export class HeartbeatDto {
   @IsInt() @Min(1) @Max(10000) playersMax!: number;
   @IsArray() @ArrayMaxSize(10000) @ArrayUnique() @IsUUID(undefined, { each: true }) onlinePlayerUuids!: string[];
 }
-export class JoinDto { @IsUUID() uuid!: string; @IsString() username!: string; @IsDateString() joinedAt!: string; }
+export class JoinDto { @IsUUID() uuid!: string; @IsString() username!: string; @IsDateString() joinedAt!: string; @IsOptional() @IsString() skinTextureHash?: string; }
+export class PlayerSkinDto { @IsUUID() uuid!: string; @IsString() skinTextureHash!: string; }
 export class QuitDto { @IsUUID() uuid!: string; @IsString() username!: string; @IsDateString() leftAt!: string; @IsInt() @Min(0) @Max(31536000) sessionPlaytimeSeconds!: number; }
 export class StartDto { @IsIn(['survival', 'creative']) serverKey!: string; @IsDateString() serverStartedAt!: string; @IsOptional() @IsString() version?: string; }
 export class StopDto { @IsIn(['survival', 'creative']) serverKey!: string; }
