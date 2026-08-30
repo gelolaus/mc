@@ -4,7 +4,7 @@ import { PlayerSlot } from './player-slot';
 
 export function PlayerStrip({ players }: { players: Player[] }) {
   return (
-    <GuiPanel>
+    <GuiPanel className="player-strip-panel">
       <div className="player-strip">
         {players.map((player) => <PlayerSlot key={player.minecraftUuid} player={player} size={72} />)}
       </div>

@@ -16,24 +16,26 @@ export default async function PlayerPage({ params }: { params: Promise<{ player:
   if (!player) notFound();
 
   return (
-    <section className="profile">
-      <div className="profile-head">
+    <section className="profile interior-page">
+      <GuiPanel className="profile-identity">
         <ItemFrame>
-          <Image className="avatar" src={avatar(player)} width={104} height={104} alt={`${player.username}'s Minecraft head`} />
+          <Image className="avatar" src={avatar(player)} width={128} height={128} alt={`${player.username}'s Minecraft head`} />
         </ItemFrame>
-        <div>
-          <h1 className="pixel" style={{ fontSize: 'clamp(42px, 6vw, 64px)', margin: 0 }}>{player.username}</h1>
-          <span className={`pixel ${player.online ? 'online' : 'offline'}`}>● {player.online ? 'ONLINE' : 'OFFLINE'}</span>
-        </div>
-      </div>
-      <GuiPanel className="book-page">
-        <div className="facts">
-          <div><div className="meta">FIRST JOINED</div><b>{date(player.firstJoinedAt)}</b></div>
-          <div><div className="meta">LAST SEEN</div><b>{player.online ? 'Online' : date(player.lastSeenAt)}</b></div>
-          <div><div className="meta">PLAYTIME</div><b>{duration(player.playtimeSeconds, true)}</b></div>
-          <div><div className="meta">SESSIONS</div><b>{player.sessionCount}</b></div>
+        <div className="profile-copy">
+          <span className="eyebrow">Player profile</span>
+          <h1 className="pixel profile-title">{player.username}</h1>
+          <span className={`profile-presence ${player.online ? 'online' : 'offline'}`}>
+            <span aria-hidden="true" />
+            {player.online ? 'Online now' : 'Offline'}
+          </span>
         </div>
       </GuiPanel>
+      <div className="profile-stats" aria-label={`${player.username}'s player statistics`}>
+        <article className="profile-stat"><span className="meta">First joined</span><b>{date(player.firstJoinedAt)}</b></article>
+        <article className="profile-stat"><span className="meta">Last seen</span><b>{player.online ? 'Online now' : date(player.lastSeenAt)}</b></article>
+        <article className="profile-stat"><span className="meta">Playtime</span><b>{duration(player.playtimeSeconds, true)}</b></article>
+        <article className="profile-stat"><span className="meta">Sessions</span><b>{player.sessionCount}</b></article>
+      </div>
     </section>
   );
 }

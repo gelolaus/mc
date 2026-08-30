@@ -21,16 +21,25 @@ export function PlayerDirectory({ initial }: { initial: Player[] }) {
   const online = players.filter((player) => player.online);
 
   return (
-    <>
-      <input className="gui-input" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search players…" aria-label="Search players" />
-      <div className="section">
-        <h2 className="pixel">Online</h2>
-        {online.length > 0 && <PlayerStrip players={online} />}
+    <div className="player-directory">
+      <div className="directory-toolbar">
+        <label className="meta" htmlFor="player-search">Find a player</label>
+        <input id="player-search" className="gui-input" value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search by username" />
       </div>
-      <div className="section">
-        <h2 className="pixel">All</h2>
-        <PlayerGrid players={players} />
-      </div>
-    </>
+      <section className="directory-section">
+        <div className="section-top">
+          <h2 className="pixel">Online</h2>
+          <span className="meta">{online.length} now</span>
+        </div>
+        {online.length > 0 ? <PlayerStrip players={online} /> : <div className="empty compact-empty">Nobody is online right now.</div>}
+      </section>
+      <section className="directory-section">
+        <div className="section-top">
+          <h2 className="pixel">Everyone</h2>
+          <span className="meta">{players.length} players</span>
+        </div>
+        {players.length > 0 ? <PlayerGrid players={players} /> : <div className="empty compact-empty">No matching players found.</div>}
+      </section>
+    </div>
   );
 }

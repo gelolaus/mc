@@ -6,8 +6,12 @@ export default async function World() {
   const world = await api<Server & { displayName: string; totalPlayers: number; totalPlaytimeSeconds: number }>('/world');
 
   return (
-    <section className="section">
-      <h1 className="pixel" style={{ fontSize: 'clamp(42px, 6vw, 64px)' }}>World</h1>
+    <section className="section interior-page">
+      <header className="page-heading">
+        <span className="eyebrow">World record</span>
+        <h1 className="pixel">World</h1>
+        <p className="sub">The numbers behind our shared world.</p>
+      </header>
       {world ? (
         <>
           <div className="stats-row">
@@ -18,7 +22,7 @@ export default async function World() {
             <StatBadge label="SERVER" value={world.online ? 'ONLINE' : 'OFFLINE'} />
             <StatBadge label="VERSION" value={world.version ?? '—'} />
           </div>
-          <div className="section">
+          <div className="inner-section">
             <h2 className="pixel">Map</h2>
             <MapFrame />
           </div>

@@ -21,7 +21,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
       <body>
         <SiteHeader anyOnline={anyOnline} />
         <main className="shell">{children}</main>
-        <footer className="nether-footer">Created by <a href="https://gelolaus.com">gelolaus.com</a></footer>
+        <footer className="nether-footer"><span className="footer-credit">Created by <a href="https://gelolaus.com">gelolaus.com</a></span></footer>
       </body>
     </html>
   );

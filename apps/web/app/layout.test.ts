@@ -25,4 +25,21 @@ describe('site styling', () => {
     const layout = readFileSync(fileURLToPath(new URL('./layout.tsx', import.meta.url)), 'utf8');
     expect(layout).toContain('--font-mc-pixel');
   });
+
+  it('uses a dedicated readable footer credit', () => {
+    const layout = readFileSync(fileURLToPath(new URL('./layout.tsx', import.meta.url)), 'utf8');
+    const css = readFileSync(fileURLToPath(new URL('./globals.css', import.meta.url)), 'utf8');
+
+    expect(layout).toContain('footer-credit');
+    expect(css).toMatch(/\.footer-credit\s*\{[^}]*font-size:\s*clamp\(/s);
+  });
+
+  it('keeps navigation and profiles usable on narrow screens', () => {
+    const css = readFileSync(fileURLToPath(new URL('./globals.css', import.meta.url)), 'utf8');
+
+    expect(css).toContain('@media (max-width: 760px)');
+    expect(css).toMatch(/\.nav-button\s*\{[^}]*min-height:\s*44px/s);
+    expect(css).toMatch(/\.profile\s*\{[^}]*max-width:\s*none/s);
+    expect(css).toMatch(/\.profile-stats\s*\{[^}]*grid-template-columns:\s*repeat\(4,/s);
+  });
 });
