@@ -1,0 +1,10 @@
+node_modules
+.next
+dist
+.env
+.vercel
+coverage
+.turbo
+pnpm-*.log
+.neon
+.env.local

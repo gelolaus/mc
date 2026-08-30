@@ -1,0 +1,18 @@
+1:"$Sreact.fragment"
+2:I[4220,["637","static/chunks/637-e3aaaec7f234e48b.js","220","static/chunks/220-717ea0e195e33af4.js","974","static/chunks/app/page-c3710bd9b4122a8f.js"],""]
+3:I[2665,[],""]
+4:I[1117,[],""]
+6:I[7804,[],"OutletBoundary"]
+8:I[6261,[],"AsyncMetadataOutlet"]
+a:I[7804,[],"ViewportBoundary"]
+c:I[7804,[],"MetadataBoundary"]
+d:"$Sreact.suspense"
+f:I[7739,[],""]
+:HL["/_next/static/css/31f21e0bcd79d781.css","style"]
+0:{"P":null,"b":"-HUuAKNAinGMs7sjH-ePM","p":"","c":["","players"],"i":false,"f":[[["",{"children":["players",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/31f21e0bcd79d781.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"__variable_4b42c2 __variable_3d904d __variable_6623bd","children":["$","body",null,{"children":[["$","header",null,{"className":"shell nav","children":[["$","$L2",null,{"className":"brand","href":"/","children":"JPCS MINECRAFT"}],["$","nav",null,{"className":"links","children":[["$","$L2",null,{"href":"/players","children":"Players"}],["$","$L2",null,{"href":"/world","children":"World"}],["$","$L2",null,{"href":"/map","children":"Map"}]]}]]}],["$","main",null,{"className":"shell","children":["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","section",null,{"className":"section","children":[["$","h1",null,{"children":"Player not found"}],["$","p",null,{"className":"lede","children":"This player has no public record yet."}]]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","footer",null,{"className":"shell","children":[["$","b",null,{"children":"JPCS-APC MINECRAFT"}],["$","br",null,{}],"This world isn't going anywhere."]}]]}]}]]}],{"children":["players",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L5",null,["$","$L6",null,{"children":["$L7",["$","$L8",null,{"promise":"$@9"}]]}]]}],{},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$La",null,{"children":"$Lb"}],null],["$","$Lc",null,{"children":["$","div",null,{"hidden":true,"children":["$","$d",null,{"fallback":null,"children":"$Le"}]}]}]]}],false]],"m":"$undefined","G":["$f",[]],"s":false,"S":true}
+b:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+7:null
+9:{"metadata":[["$","title","0",{"children":"JPCS-APC Minecraft"}],["$","meta","1",{"name":"description","content":"The permanent Minecraft world of the JPCS-APC community."}]],"error":null,"digest":"$undefined"}
+e:"$9:metadata"
+10:I[8149,["637","static/chunks/637-e3aaaec7f234e48b.js","220","static/chunks/220-717ea0e195e33af4.js","215","static/chunks/app/players/page-62475af8955fae16.js"],"PlayerDirectory"]
+5:["$","section",null,{"className":"section","children":[["$","h1",null,{"style":{"fontSize":"clamp(48px,8vw,72px)"},"children":"Players"}],["$","p",null,{"className":"lede","children":[0," people have joined the world."]}],["$","$L10",null,{"initial":[]}]]}]

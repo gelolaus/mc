@@ -1,0 +1,2 @@
+{ "version": 2, "buildCommand": "pnpm --filter @jpcs/web build" }
+

@@ -1,0 +1,4 @@
+$ turbo dev
+• turbo 2.10.12
+@jpcs/api#dev:  ERROR  command (C:\Users\gelo\Desktop\dev\mc\apps\api) C:\Users\gelo\AppData\Local\npm-cache\_npx\2a6889d81a455288\node_modules\.bin\pnpm.cmd run dev exited (-1)
+ ERROR  run failed: command  exited (-1)

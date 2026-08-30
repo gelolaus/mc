@@ -1,0 +1,392 @@
+
+   • Packages in scope: @jpcs/api, @jpcs/shared, @jpcs/web
+   • Running dev in 3 packages
+   • Remote caching disabled
+
+@jpcs/api:dev: cache bypass, force executing a254871868b2756c
+@jpcs/web:dev: cache bypass, force executing 8107b9a28e651c9a
+@jpcs/api:dev: $ nest start --watch
+@jpcs/web:dev: $ next dev -p 3000
+@jpcs/api:dev: [2J[3J[H[[90m7:15:57 PM[0m] Starting compilation in watch mode...
+@jpcs/api:dev: 
+@jpcs/web:dev:    ▲ Next.js 15.5.24
+@jpcs/web:dev:    - Local:        http://localhost:3000
+@jpcs/web:dev:    - Network:      http://192.168.1.2:3000
+@jpcs/web:dev: 
+@jpcs/web:dev:  ✓ Starting...
+@jpcs/web:dev:  ✓ Ready in 3.6s
+@jpcs/api:dev: [[90m7:16:03 PM[0m] Found 0 errors. Watching for file changes.
+@jpcs/api:dev: 
+@jpcs/api:dev: ◇ injected env (9) from ..\..\.env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+@jpcs/api:dev: [Nest] 22704  - 08/30/2026, 7:16:05 PM     LOG [NestFactory] Starting Nest application...
+@jpcs/api:dev: [Nest] 22704  - 08/30/2026, 7:16:06 PM     LOG [InstanceLoader] AppModule dependencies initialized +28ms
+@jpcs/api:dev: [Nest] 22704  - 08/30/2026, 7:16:06 PM     LOG [RoutesResolver] PublicController {/v1}: +50ms
+@jpcs/api:dev: [Nest] 22704  - 08/30/2026, 7:16:06 PM     LOG [RouterExplorer] Mapped {/v1/server, GET} route +5ms
+@jpcs/api:dev: [Nest] 22704  - 08/30/2026, 7:16:06 PM     LOG [RouterExplorer] Mapped {/v1/world, GET} route +1ms
+@jpcs/api:dev: [Nest] 22704  - 08/30/2026, 7:16:06 PM     LOG [RouterExplorer] Mapped {/v1/players, GET} route +1ms
+@jpcs/api:dev: [Nest] 22704  - 08/30/2026, 7:16:06 PM     LOG [RouterExplorer] Mapped {/v1/players/new, GET} route +1ms
+@jpcs/api:dev: [Nest] 22704  - 08/30/2026, 7:16:06 PM     LOG [RouterExplorer] Mapped {/v1/players/:uuidOrUsername, GET} route +1ms
+@jpcs/api:dev: [Nest] 22704  - 08/30/2026, 7:16:06 PM     LOG [RoutesResolver] IngestionController {/v1/ingest}: +1ms
+@jpcs/api:dev: [Nest] 22704  - 08/30/2026, 7:16:06 PM     LOG [RouterExplorer] Mapped {/v1/ingest/heartbeat, POST} route +0ms
+@jpcs/api:dev: [Nest] 22704  - 08/30/2026, 7:16:06 PM     LOG [RouterExplorer] Mapped {/v1/ingest/players/join, POST} route +0ms
+@jpcs/api:dev: [Nest] 22704  - 08/30/2026, 7:16:06 PM     LOG [RouterExplorer] Mapped {/v1/ingest/players/quit, POST} route +1ms
+@jpcs/api:dev: [Nest] 22704  - 08/30/2026, 7:16:06 PM     LOG [RouterExplorer] Mapped {/v1/ingest/server/start, POST} route +0ms
+@jpcs/api:dev: [Nest] 22704  - 08/30/2026, 7:16:06 PM     LOG [RouterExplorer] Mapped {/v1/ingest/server/stop, POST} route +1ms
+@jpcs/api:dev: [Nest] 22704  - 08/30/2026, 7:16:06 PM     LOG [NestApplication] Nest application successfully started +323ms
+@jpcs/web:dev:  ○ Compiling /world ...
+@jpcs/web:dev:  ✓ Compiled /world in 8.2s (652 modules)
+@jpcs/web:dev:  GET /world 200 in 9934ms
+@jpcs/web:dev:  ○ Compiling / ...
+@jpcs/web:dev:  ✓ Compiled / in 680ms (659 modules)
+@jpcs/web:dev:  GET / 200 in 1166ms
+@jpcs/web:dev:  ✓ Compiled /world in 170ms (395 modules)
+@jpcs/web:dev:  GET /world 200 in 297ms
+@jpcs/web:dev:  ✓ Compiled /map in 284ms (649 modules)
+@jpcs/web:dev:  GET /map 200 in 369ms
+@jpcs/web:dev:  GET /world 200 in 34ms
+@jpcs/web:dev:  ✓ Compiled /players in 392ms (657 modules)
+@jpcs/web:dev:  GET /players 200 in 494ms
+@jpcs/web:dev:  ✓ Compiled in 374ms (268 modules)
+@jpcs/web:dev:  ⨯ ./app/layout.tsx:1:1
+@jpcs/web:dev: Module not found: Can't resolve './globals.css'
+@jpcs/web:dev: > 1 | import './globals.css'; import Link from 'next/link'; import localFont from 'next/font/local'; import type { Metadata } from 'next';
+@jpcs/web:dev:     | ^
+@jpcs/web:dev:   2 | const sans = localFont({ src: '../fonts/plus-jakarta-sans-latin-wght-normal.woff2', variable: '--font-mc-sans', weight: '200 800', display: 'swap' });
+@jpcs/web:dev:   3 | const mono = localFont({ src: '../fonts/jetbrains-mono-latin-wght-normal.woff2', variable: '--font-mc-mono', weight: '100 800', display: 'swap' });
+@jpcs/web:dev:   4 | const display = localFont({ src: '../fonts/syne-latin-wght-normal.woff2', variable: '--font-mc-display', weight: '400 800', display: 'swap' });
+@jpcs/web:dev: 
+@jpcs/web:dev: https://nextjs.org/docs/messages/module-not-found
+@jpcs/web:dev:  ✓ Compiled in 2.2s (664 modules)
+@jpcs/web:dev:  ✓ Compiled in 284ms (266 modules)
+@jpcs/web:dev:  GET / 200 in 407ms
+@jpcs/web:dev:  GET / 200 in 121ms
+@jpcs/web:dev:  GET / 200 in 94ms
+@jpcs/web:dev:  GET / 200 in 204ms
+@jpcs/api:dev: [2J[3J[H[[90m7:28:42 PM[0m] File change detected. Starting incremental compilation...
+@jpcs/api:dev: 
+@jpcs/api:dev: [96mtest/servers.spec.ts[0m:[93m17[0m:[93m48[0m - [91merror[0m[90m TS2551: [0mProperty 'publicStates' does not exist on type 'ServerService'. Did you mean 'publicState'?
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m17[0m     const states = await new ServerService(db).publicStates();
+@jpcs/api:dev: [7m  [0m [91m                                               ~~~~~~~~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev:   [96msrc/server.service.ts[0m:[93m8[0m:[93m9[0m
+@jpcs/api:dev:     [7m8[0m   async publicState() {
+@jpcs/api:dev:     [7m [0m [96m        ~~~~~~~~~~~[0m
+@jpcs/api:dev:     'publicState' is declared here.
+@jpcs/api:dev: 
+@jpcs/api:dev: [96mtest/servers.spec.ts[0m:[93m19[0m:[93m24[0m - [91merror[0m[90m TS7006: [0mParameter 'state' implicitly has an 'any' type.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m19[0m     expect(states.map((state) => state.serverKey)).toEqual(['survival', 'creative']);
+@jpcs/api:dev: [7m  [0m [91m                       ~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev: [96mtest/servers.spec.ts[0m:[93m20[0m:[93m24[0m - [91merror[0m[90m TS7006: [0mParameter 'state' implicitly has an 'any' type.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m20[0m     expect(states.map((state) => state.playersOnline)).toEqual([4, 2]);
+@jpcs/api:dev: [7m  [0m [91m                       ~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev: [[90m7:28:42 PM[0m] Found 3 errors. Watching for file changes.
+@jpcs/api:dev: 
+@jpcs/api:dev: [2J[3J[H[[90m7:30:20 PM[0m] File change detected. Starting incremental compilation...
+@jpcs/api:dev: 
+@jpcs/api:dev: [96msrc/controllers.ts[0m:[93m1[0m:[93m293[0m - [91merror[0m[90m TS2307: [0mCannot find module './dto' or its corresponding type declarations.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m1[0m import { Body, Controller, Get, Headers, HttpCode, Post, Query, UnauthorizedException, UseGuards, CanActivate, ExecutionContext, Injectable, Param } from '@nestjs/common'; import { timingSafeEqual } from 'node:crypto'; import { HeartbeatDto, JoinDto, PlayerQueryDto, QuitDto, StartDto } from './dto'; import { IngestionService } from './ingestion.service'; import { PlayersService } from './players.service'; import { ServerService } from './server.service';
+@jpcs/api:dev: [7m [0m [91m                                                                                                                                                                                                                                                                                                    ~~~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev: [96msrc/ingestion.service.ts[0m:[93m1[0m:[93m157[0m - [91merror[0m[90m TS2307: [0mCannot find module './dto' or its corresponding type declarations.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m1[0m import { Injectable } from '@nestjs/common'; import { DatabaseService } from './database.service'; import { HeartbeatDto, JoinDto, QuitDto, StartDto } from './dto';
+@jpcs/api:dev: [7m [0m [91m                                                                                                                                                            ~~~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev: [96msrc/players.service.ts[0m:[93m1[0m:[93m150[0m - [91merror[0m[90m TS2307: [0mCannot find module './dto' or its corresponding type declarations.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m1[0m import { Injectable, NotFoundException } from '@nestjs/common'; import { DatabaseService } from './database.service'; import { PlayerQueryDto } from './dto';
+@jpcs/api:dev: [7m [0m [91m                                                                                                                                                     ~~~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev: [96mtest/servers.spec.ts[0m:[93m17[0m:[93m48[0m - [91merror[0m[90m TS2551: [0mProperty 'publicStates' does not exist on type 'ServerService'. Did you mean 'publicState'?
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m17[0m     const states = await new ServerService(db).publicStates();
+@jpcs/api:dev: [7m  [0m [91m                                               ~~~~~~~~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev:   [96msrc/server.service.ts[0m:[93m8[0m:[93m9[0m
+@jpcs/api:dev:     [7m8[0m   async publicState() {
+@jpcs/api:dev:     [7m [0m [96m        ~~~~~~~~~~~[0m
+@jpcs/api:dev:     'publicState' is declared here.
+@jpcs/api:dev: 
+@jpcs/api:dev: [96mtest/servers.spec.ts[0m:[93m19[0m:[93m24[0m - [91merror[0m[90m TS7006: [0mParameter 'state' implicitly has an 'any' type.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m19[0m     expect(states.map((state) => state.serverKey)).toEqual(['survival', 'creative']);
+@jpcs/api:dev: [7m  [0m [91m                       ~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev: [96mtest/servers.spec.ts[0m:[93m20[0m:[93m24[0m - [91merror[0m[90m TS7006: [0mParameter 'state' implicitly has an 'any' type.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m20[0m     expect(states.map((state) => state.playersOnline)).toEqual([4, 2]);
+@jpcs/api:dev: [7m  [0m [91m                       ~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev: [[90m7:30:21 PM[0m] Found 6 errors. Watching for file changes.
+@jpcs/api:dev: 
+@jpcs/api:dev: [2J[3J[H[[90m7:30:31 PM[0m] File change detected. Starting incremental compilation...
+@jpcs/api:dev: 
+@jpcs/api:dev: [96mtest/servers.spec.ts[0m:[93m17[0m:[93m48[0m - [91merror[0m[90m TS2551: [0mProperty 'publicStates' does not exist on type 'ServerService'. Did you mean 'publicState'?
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m17[0m     const states = await new ServerService(db).publicStates();
+@jpcs/api:dev: [7m  [0m [91m                                               ~~~~~~~~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev:   [96msrc/server.service.ts[0m:[93m8[0m:[93m9[0m
+@jpcs/api:dev:     [7m8[0m   async publicState() {
+@jpcs/api:dev:     [7m [0m [96m        ~~~~~~~~~~~[0m
+@jpcs/api:dev:     'publicState' is declared here.
+@jpcs/api:dev: 
+@jpcs/api:dev: [96mtest/servers.spec.ts[0m:[93m19[0m:[93m24[0m - [91merror[0m[90m TS7006: [0mParameter 'state' implicitly has an 'any' type.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m19[0m     expect(states.map((state) => state.serverKey)).toEqual(['survival', 'creative']);
+@jpcs/api:dev: [7m  [0m [91m                       ~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev: [96mtest/servers.spec.ts[0m:[93m20[0m:[93m24[0m - [91merror[0m[90m TS7006: [0mParameter 'state' implicitly has an 'any' type.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m20[0m     expect(states.map((state) => state.playersOnline)).toEqual([4, 2]);
+@jpcs/api:dev: [7m  [0m [91m                       ~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev: [[90m7:30:32 PM[0m] Found 3 errors. Watching for file changes.
+@jpcs/api:dev: 
+@jpcs/api:dev: [2J[3J[H[[90m7:30:34 PM[0m] File change detected. Starting incremental compilation...
+@jpcs/api:dev: 
+@jpcs/api:dev: [96msrc/app.module.ts[0m:[93m1[0m:[93m126[0m - [91merror[0m[90m TS2307: [0mCannot find module './server.service' or its corresponding type declarations.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m1[0m import { Module } from '@nestjs/common'; import { DatabaseService } from './database.service'; import { ServerService } from './server.service'; import { PlayersService } from './players.service'; import { IngestionService } from './ingestion.service'; import { PublicController, IngestionController } from './controllers';
+@jpcs/api:dev: [7m [0m [91m                                                                                                                             ~~~~~~~~~~~~~~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev: [96msrc/app.module.ts[0m:[93m1[0m:[93m231[0m - [91merror[0m[90m TS2307: [0mCannot find module './ingestion.service' or its corresponding type declarations.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m1[0m import { Module } from '@nestjs/common'; import { DatabaseService } from './database.service'; import { ServerService } from './server.service'; import { PlayersService } from './players.service'; import { IngestionService } from './ingestion.service'; import { PublicController, IngestionController } from './controllers';
+@jpcs/api:dev: [7m [0m [91m                                                                                                                                                                                                                                      ~~~~~~~~~~~~~~~~~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev: [96msrc/app.module.ts[0m:[93m1[0m:[93m308[0m - [91merror[0m[90m TS2307: [0mCannot find module './controllers' or its corresponding type declarations.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m1[0m import { Module } from '@nestjs/common'; import { DatabaseService } from './database.service'; import { ServerService } from './server.service'; import { PlayersService } from './players.service'; import { IngestionService } from './ingestion.service'; import { PublicController, IngestionController } from './controllers';
+@jpcs/api:dev: [7m [0m [91m                                                                                                                                                                                                                                                                                                                   ~~~~~~~~~~~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev: [96mtest/controllers.spec.ts[0m:[93m1[0m:[93m80[0m - [91merror[0m[90m TS2307: [0mCannot find module '../src/controllers' or its corresponding type declarations.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m1[0m import { describe, expect, it } from 'vitest'; import { IngestAuthGuard } from '../src/controllers';
+@jpcs/api:dev: [7m [0m [91m                                                                               ~~~~~~~~~~~~~~~~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev: [96mtest/ingestion.service.spec.ts[0m:[93m1[0m:[93m81[0m - [91merror[0m[90m TS2307: [0mCannot find module '../src/ingestion.service' or its corresponding type declarations.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m1[0m import { describe, expect, it } from 'vitest'; import { IngestionService } from '../src/ingestion.service';
+@jpcs/api:dev: [7m [0m [91m                                                                                ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev: [96mtest/server.service.spec.ts[0m:[93m1[0m:[93m78[0m - [91merror[0m[90m TS2307: [0mCannot find module '../src/server.service' or its corresponding type declarations.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m1[0m import { describe, expect, it } from 'vitest'; import { ServerService } from '../src/server.service';
+@jpcs/api:dev: [7m [0m [91m                                                                             ~~~~~~~~~~~~~~~~~~~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev: [96mtest/servers.spec.ts[0m:[93m2[0m:[93m31[0m - [91merror[0m[90m TS2307: [0mCannot find module '../src/server.service' or its corresponding type declarations.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m2[0m import { ServerService } from '../src/server.service';
+@jpcs/api:dev: [7m [0m [91m                              ~~~~~~~~~~~~~~~~~~~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev: [96mtest/servers.spec.ts[0m:[93m19[0m:[93m24[0m - [91merror[0m[90m TS7006: [0mParameter 'state' implicitly has an 'any' type.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m19[0m     expect(states.map((state) => state.serverKey)).toEqual(['survival', 'creative']);
+@jpcs/api:dev: [7m  [0m [91m                       ~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev: [96mtest/servers.spec.ts[0m:[93m20[0m:[93m24[0m - [91merror[0m[90m TS7006: [0mParameter 'state' implicitly has an 'any' type.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m20[0m     expect(states.map((state) => state.playersOnline)).toEqual([4, 2]);
+@jpcs/api:dev: [7m  [0m [91m                       ~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev: [[90m7:30:34 PM[0m] Found 9 errors. Watching for file changes.
+@jpcs/api:dev: 
+@jpcs/api:dev: [2J[3J[H[[90m7:31:23 PM[0m] File change detected. Starting incremental compilation...
+@jpcs/api:dev: 
+@jpcs/api:dev: [96msrc/ingestion.service.ts[0m:[93m15[0m:[93m18[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'serverKey' does not exist in type 'ServerStateWhereUniqueInput'.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m15[0m         where: { serverKey: input.serverKey },
+@jpcs/api:dev: [7m  [0m [91m                 ~~~~~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev:   [96m../../node_modules/.pnpm/@prisma+client@6.19.3_prism_1d040ab5215f59f0e27ddee7f0cf082e/node_modules/.prisma/client/index.d.ts[0m:[93m3175[0m:[93m5[0m
+@jpcs/api:dev:     [7m3175[0m     where: ServerStateWhereUniqueInput
+@jpcs/api:dev:     [7m    [0m [96m    ~~~~~[0m
+@jpcs/api:dev:     The expected type comes from property 'where' which is declared here on type '{ select?: ServerStateSelect<DefaultArgs> | null | undefined; omit?: ServerStateOmit<DefaultArgs> | null | undefined; where: ServerStateWhereUniqueInput; create: (Without<...> & ServerStateUncheckedCreateInput) | (Without<...> & ServerStateCreateInput); update: (Without<...> & ServerStateUncheckedUpdateInput) | (Wit...'
+@jpcs/api:dev: 
+@jpcs/api:dev: [96msrc/ingestion.service.ts[0m:[93m16[0m:[93m19[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'serverKey' does not exist in type '(Without<ServerStateCreateInput, ServerStateUncheckedCreateInput> & ServerStateUncheckedCreateInput) | (Without<...> & ServerStateCreateInput)'.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m16[0m         create: { serverKey: input.serverKey, displayName: this.displayName(input.serverKey), version: input.version, playersOnline: input.playersOnline, playersMax: input.playersMax, serverStartedAt: new Date(input.serverStartedAt), lastHeartbeatAt: at },
+@jpcs/api:dev: [7m  [0m [91m                  ~~~~~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev:   [96m../../node_modules/.pnpm/@prisma+client@6.19.3_prism_1d040ab5215f59f0e27ddee7f0cf082e/node_modules/.prisma/client/index.d.ts[0m:[93m3179[0m:[93m5[0m
+@jpcs/api:dev:     [7m3179[0m     create: XOR<ServerStateCreateInput, ServerStateUncheckedCreateInput>
+@jpcs/api:dev:     [7m    [0m [96m    ~~~~~~[0m
+@jpcs/api:dev:     The expected type comes from property 'create' which is declared here on type '{ select?: ServerStateSelect<DefaultArgs> | null | undefined; omit?: ServerStateOmit<DefaultArgs> | null | undefined; where: ServerStateWhereUniqueInput; create: (Without<...> & ServerStateUncheckedCreateInput) | (Without<...> & ServerStateCreateInput); update: (Without<...> & ServerStateUncheckedUpdateInput) | (Wit...'
+@jpcs/api:dev: 
+@jpcs/api:dev: [96msrc/ingestion.service.ts[0m:[93m19[0m:[93m44[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'currentServerKey' does not exist in type 'PlayerWhereInput'.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m19[0m       this.db.player.updateMany({ where: { currentServerKey: input.serverKey, minecraftUuid: { notIn: input.onlinePlayerUuids } }, data: { online: false, currentServerKey: null } }),
+@jpcs/api:dev: [7m  [0m [91m                                           ~~~~~~~~~~~~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev:   [96m../../node_modules/.pnpm/@prisma+client@6.19.3_prism_1d040ab5215f59f0e27ddee7f0cf082e/node_modules/.prisma/client/index.d.ts[0m:[93m2051[0m:[93m5[0m
+@jpcs/api:dev:     [7m2051[0m     where?: PlayerWhereInput
+@jpcs/api:dev:     [7m    [0m [96m    ~~~~~[0m
+@jpcs/api:dev:     The expected type comes from property 'where' which is declared here on type '{ data: (Without<PlayerUpdateManyMutationInput, PlayerUncheckedUpdateManyInput> & PlayerUncheckedUpdateManyInput) | (Without<...> & PlayerUpdateManyMutationInput); where?: PlayerWhereInput | undefined; limit?: number | undefined; }'
+@jpcs/api:dev: 
+@jpcs/api:dev: [96msrc/ingestion.service.ts[0m:[93m19[0m:[93m155[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'currentServerKey' does not exist in type '(Without<PlayerUpdateManyMutationInput, PlayerUncheckedUpdateManyInput> & PlayerUncheckedUpdateManyInput) | (Without<...> & PlayerUpdateManyMutationInput)'.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m19[0m       this.db.player.updateMany({ where: { currentServerKey: input.serverKey, minecraftUuid: { notIn: input.onlinePlayerUuids } }, data: { online: false, currentServerKey: null } }),
+@jpcs/api:dev: [7m  [0m [91m                                                                                                                                                          ~~~~~~~~~~~~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev:   [96m../../node_modules/.pnpm/@prisma+client@6.19.3_prism_1d040ab5215f59f0e27ddee7f0cf082e/node_modules/.prisma/client/index.d.ts[0m:[93m2047[0m:[93m5[0m
+@jpcs/api:dev:     [7m2047[0m     data: XOR<PlayerUpdateManyMutationInput, PlayerUncheckedUpdateManyInput>
+@jpcs/api:dev:     [7m    [0m [96m    ~~~~[0m
+@jpcs/api:dev:     The expected type comes from property 'data' which is declared here on type '{ data: (Without<PlayerUpdateManyMutationInput, PlayerUncheckedUpdateManyInput> & PlayerUncheckedUpdateManyInput) | (Without<...> & PlayerUpdateManyMutationInput); where?: PlayerWhereInput | undefined; limit?: number | undefined; }'
+@jpcs/api:dev: 
+@jpcs/api:dev: [96msrc/ingestion.service.ts[0m:[93m20[0m:[93m116[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'currentServerKey' does not exist in type '(Without<PlayerUpdateManyMutationInput, PlayerUncheckedUpdateManyInput> & PlayerUncheckedUpdateManyInput) | (Without<...> & PlayerUpdateManyMutationInput)'.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m20[0m       this.db.player.updateMany({ where: { minecraftUuid: { in: input.onlinePlayerUuids } }, data: { online: true, currentServerKey: input.serverKey, lastSeenAt: at } }),
+@jpcs/api:dev: [7m  [0m [91m                                                                                                                   ~~~~~~~~~~~~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev:   [96m../../node_modules/.pnpm/@prisma+client@6.19.3_prism_1d040ab5215f59f0e27ddee7f0cf082e/node_modules/.prisma/client/index.d.ts[0m:[93m2047[0m:[93m5[0m
+@jpcs/api:dev:     [7m2047[0m     data: XOR<PlayerUpdateManyMutationInput, PlayerUncheckedUpdateManyInput>
+@jpcs/api:dev:     [7m    [0m [96m    ~~~~[0m
+@jpcs/api:dev:     The expected type comes from property 'data' which is declared here on type '{ data: (Without<PlayerUpdateManyMutationInput, PlayerUncheckedUpdateManyInput> & PlayerUncheckedUpdateManyInput) | (Without<...> & PlayerUpdateManyMutationInput); where?: PlayerWhereInput | undefined; limit?: number | undefined; }'
+@jpcs/api:dev: 
+@jpcs/api:dev: [96msrc/ingestion.service.ts[0m:[93m33[0m:[93m142[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'currentServerKey' does not exist in type '(Without<PlayerUpdateInput, PlayerUncheckedUpdateInput> & PlayerUncheckedUpdateInput) | (Without<...> & PlayerUpdateInput)'.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m33[0m     await this.db.player.update({ where: { minecraftUuid: input.uuid }, data: { username: input.username, lastSeenAt: leftAt, online: false, currentServerKey: null, playtimeSeconds: { increment: input.sessionPlaytimeSeconds } } });
+@jpcs/api:dev: [7m  [0m [91m                                                                                                                                             ~~~~~~~~~~~~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev:   [96m../../node_modules/.pnpm/@prisma+client@6.19.3_prism_1d040ab5215f59f0e27ddee7f0cf082e/node_modules/.prisma/client/index.d.ts[0m:[93m2033[0m:[93m5[0m
+@jpcs/api:dev:     [7m2033[0m     data: XOR<PlayerUpdateInput, PlayerUncheckedUpdateInput>
+@jpcs/api:dev:     [7m    [0m [96m    ~~~~[0m
+@jpcs/api:dev:     The expected type comes from property 'data' which is declared here on type '{ select?: PlayerSelect<DefaultArgs> | null | undefined; omit?: PlayerOmit<DefaultArgs> | null | undefined; data: (Without<PlayerUpdateInput, PlayerUncheckedUpdateInput> & PlayerUncheckedUpdateInput) | (Without<...> & PlayerUpdateInput); where: PlayerWhereUniqueInput; }'
+@jpcs/api:dev: 
+@jpcs/api:dev: [96msrc/ingestion.service.ts[0m:[93m38[0m:[93m95[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'currentServerKey' does not exist in type '(Without<PlayerUpdateInput, PlayerUncheckedUpdateInput> & PlayerUncheckedUpdateInput) | (Without<...> & PlayerUpdateInput)'.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m38[0m     await this.db.player.update({ where: { minecraftUuid: input.uuid }, data: { online: true, currentServerKey: input.serverKey, lastSeenAt: new Date(input.connectedAt) } });
+@jpcs/api:dev: [7m  [0m [91m                                                                                              ~~~~~~~~~~~~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev:   [96m../../node_modules/.pnpm/@prisma+client@6.19.3_prism_1d040ab5215f59f0e27ddee7f0cf082e/node_modules/.prisma/client/index.d.ts[0m:[93m2033[0m:[93m5[0m
+@jpcs/api:dev:     [7m2033[0m     data: XOR<PlayerUpdateInput, PlayerUncheckedUpdateInput>
+@jpcs/api:dev:     [7m    [0m [96m    ~~~~[0m
+@jpcs/api:dev:     The expected type comes from property 'data' which is declared here on type '{ select?: PlayerSelect<DefaultArgs> | null | undefined; omit?: PlayerOmit<DefaultArgs> | null | undefined; data: (Without<PlayerUpdateInput, PlayerUncheckedUpdateInput> & PlayerUncheckedUpdateInput) | (Without<...> & PlayerUpdateInput); where: PlayerWhereUniqueInput; }'
+@jpcs/api:dev: 
+@jpcs/api:dev: [96msrc/ingestion.service.ts[0m:[93m43[0m:[93m49[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'serverKey' does not exist in type 'ServerStateWhereUniqueInput'.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m43[0m     await this.db.serverState.upsert({ where: { serverKey: input.serverKey }, create: { serverKey: input.serverKey, displayName: this.displayName(input.serverKey), serverStartedAt: new Date(input.serverStartedAt), version: input.version }, update: { serverStartedAt: new Date(input.serverStartedAt), version: input.version, stoppedAt: null } });
+@jpcs/api:dev: [7m  [0m [91m                                                ~~~~~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev:   [96m../../node_modules/.pnpm/@prisma+client@6.19.3_prism_1d040ab5215f59f0e27ddee7f0cf082e/node_modules/.prisma/client/index.d.ts[0m:[93m3175[0m:[93m5[0m
+@jpcs/api:dev:     [7m3175[0m     where: ServerStateWhereUniqueInput
+@jpcs/api:dev:     [7m    [0m [96m    ~~~~~[0m
+@jpcs/api:dev:     The expected type comes from property 'where' which is declared here on type '{ select?: ServerStateSelect<DefaultArgs> | null | undefined; omit?: ServerStateOmit<DefaultArgs> | null | undefined; where: ServerStateWhereUniqueInput; create: (Without<...> & ServerStateUncheckedCreateInput) | (Without<...> & ServerStateCreateInput); update: (Without<...> & ServerStateUncheckedUpdateInput) | (Wit...'
+@jpcs/api:dev: 
+@jpcs/api:dev: [96msrc/ingestion.service.ts[0m:[93m43[0m:[93m89[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'serverKey' does not exist in type '(Without<ServerStateCreateInput, ServerStateUncheckedCreateInput> & ServerStateUncheckedCreateInput) | (Without<...> & ServerStateCreateInput)'.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m43[0m     await this.db.serverState.upsert({ where: { serverKey: input.serverKey }, create: { serverKey: input.serverKey, displayName: this.displayName(input.serverKey), serverStartedAt: new Date(input.serverStartedAt), version: input.version }, update: { serverStartedAt: new Date(input.serverStartedAt), version: input.version, stoppedAt: null } });
+@jpcs/api:dev: [7m  [0m [91m                                                                                        ~~~~~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev:   [96m../../node_modules/.pnpm/@prisma+client@6.19.3_prism_1d040ab5215f59f0e27ddee7f0cf082e/node_modules/.prisma/client/index.d.ts[0m:[93m3179[0m:[93m5[0m
+@jpcs/api:dev:     [7m3179[0m     create: XOR<ServerStateCreateInput, ServerStateUncheckedCreateInput>
+@jpcs/api:dev:     [7m    [0m [96m    ~~~~~~[0m
+@jpcs/api:dev:     The expected type comes from property 'create' which is declared here on type '{ select?: ServerStateSelect<DefaultArgs> | null | undefined; omit?: ServerStateOmit<DefaultArgs> | null | undefined; where: ServerStateWhereUniqueInput; create: (Without<...> & ServerStateUncheckedCreateInput) | (Without<...> & ServerStateCreateInput); update: (Without<...> & ServerStateUncheckedUpdateInput) | (Wit...'
+@jpcs/api:dev: 
+@jpcs/api:dev: [96msrc/ingestion.service.ts[0m:[93m48[0m:[93m49[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'serverKey' does not exist in type 'ServerStateWhereUniqueInput'.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m48[0m     await this.db.serverState.upsert({ where: { serverKey: input.serverKey }, create: { serverKey: input.serverKey, displayName: this.displayName(input.serverKey), stoppedAt: new Date() }, update: { stoppedAt: new Date(), playersOnline: 0 } });
+@jpcs/api:dev: [7m  [0m [91m                                                ~~~~~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev:   [96m../../node_modules/.pnpm/@prisma+client@6.19.3_prism_1d040ab5215f59f0e27ddee7f0cf082e/node_modules/.prisma/client/index.d.ts[0m:[93m3175[0m:[93m5[0m
+@jpcs/api:dev:     [7m3175[0m     where: ServerStateWhereUniqueInput
+@jpcs/api:dev:     [7m    [0m [96m    ~~~~~[0m
+@jpcs/api:dev:     The expected type comes from property 'where' which is declared here on type '{ select?: ServerStateSelect<DefaultArgs> | null | undefined; omit?: ServerStateOmit<DefaultArgs> | null | undefined; where: ServerStateWhereUniqueInput; create: (Without<...> & ServerStateUncheckedCreateInput) | (Without<...> & ServerStateCreateInput); update: (Without<...> & ServerStateUncheckedUpdateInput) | (Wit...'
+@jpcs/api:dev: 
+@jpcs/api:dev: [96msrc/ingestion.service.ts[0m:[93m48[0m:[93m89[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'serverKey' does not exist in type '(Without<ServerStateCreateInput, ServerStateUncheckedCreateInput> & ServerStateUncheckedCreateInput) | (Without<...> & ServerStateCreateInput)'.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m48[0m     await this.db.serverState.upsert({ where: { serverKey: input.serverKey }, create: { serverKey: input.serverKey, displayName: this.displayName(input.serverKey), stoppedAt: new Date() }, update: { stoppedAt: new Date(), playersOnline: 0 } });
+@jpcs/api:dev: [7m  [0m [91m                                                                                        ~~~~~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev:   [96m../../node_modules/.pnpm/@prisma+client@6.19.3_prism_1d040ab5215f59f0e27ddee7f0cf082e/node_modules/.prisma/client/index.d.ts[0m:[93m3179[0m:[93m5[0m
+@jpcs/api:dev:     [7m3179[0m     create: XOR<ServerStateCreateInput, ServerStateUncheckedCreateInput>
+@jpcs/api:dev:     [7m    [0m [96m    ~~~~~~[0m
+@jpcs/api:dev:     The expected type comes from property 'create' which is declared here on type '{ select?: ServerStateSelect<DefaultArgs> | null | undefined; omit?: ServerStateOmit<DefaultArgs> | null | undefined; where: ServerStateWhereUniqueInput; create: (Without<...> & ServerStateUncheckedCreateInput) | (Without<...> & ServerStateCreateInput); update: (Without<...> & ServerStateUncheckedUpdateInput) | (Wit...'
+@jpcs/api:dev: 
+@jpcs/api:dev: [96msrc/ingestion.service.ts[0m:[93m49[0m:[93m48[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'currentServerKey' does not exist in type 'PlayerWhereInput'.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m49[0m     await this.db.player.updateMany({ where: { currentServerKey: input.serverKey }, data: { online: false, currentServerKey: null } });
+@jpcs/api:dev: [7m  [0m [91m                                               ~~~~~~~~~~~~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev:   [96m../../node_modules/.pnpm/@prisma+client@6.19.3_prism_1d040ab5215f59f0e27ddee7f0cf082e/node_modules/.prisma/client/index.d.ts[0m:[93m2051[0m:[93m5[0m
+@jpcs/api:dev:     [7m2051[0m     where?: PlayerWhereInput
+@jpcs/api:dev:     [7m    [0m [96m    ~~~~~[0m
+@jpcs/api:dev:     The expected type comes from property 'where' which is declared here on type '{ data: (Without<PlayerUpdateManyMutationInput, PlayerUncheckedUpdateManyInput> & PlayerUncheckedUpdateManyInput) | (Without<...> & PlayerUpdateManyMutationInput); where?: PlayerWhereInput | undefined; limit?: number | undefined; }'
+@jpcs/api:dev: 
+@jpcs/api:dev: [96msrc/ingestion.service.ts[0m:[93m49[0m:[93m108[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'currentServerKey' does not exist in type '(Without<PlayerUpdateManyMutationInput, PlayerUncheckedUpdateManyInput> & PlayerUncheckedUpdateManyInput) | (Without<...> & PlayerUpdateManyMutationInput)'.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m49[0m     await this.db.player.updateMany({ where: { currentServerKey: input.serverKey }, data: { online: false, currentServerKey: null } });
+@jpcs/api:dev: [7m  [0m [91m                                                                                                           ~~~~~~~~~~~~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev:   [96m../../node_modules/.pnpm/@prisma+client@6.19.3_prism_1d040ab5215f59f0e27ddee7f0cf082e/node_modules/.prisma/client/index.d.ts[0m:[93m2047[0m:[93m5[0m
+@jpcs/api:dev:     [7m2047[0m     data: XOR<PlayerUpdateManyMutationInput, PlayerUncheckedUpdateManyInput>
+@jpcs/api:dev:     [7m    [0m [96m    ~~~~[0m
+@jpcs/api:dev:     The expected type comes from property 'data' which is declared here on type '{ data: (Without<PlayerUpdateManyMutationInput, PlayerUncheckedUpdateManyInput> & PlayerUncheckedUpdateManyInput) | (Without<...> & PlayerUpdateManyMutationInput); where?: PlayerWhereInput | undefined; limit?: number | undefined; }'
+@jpcs/api:dev: 
+@jpcs/api:dev: [96msrc/server.service.ts[0m:[93m18[0m:[93m88[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'serverKey' does not exist in type 'ServerStateWhereInput'.
+@jpcs/api:dev: 
+@jpcs/api:dev: [7m18[0m     const [states, world] = await Promise.all([this.db.serverState.findMany({ where: { serverKey: { in: [...keys] } } }), this.db.world.findUnique({ where: { id: 1 } })]);
+@jpcs/api:dev: [7m  [0m [91m                                                                                       ~~~~~~~~~[0m
+@jpcs/api:dev: 
+@jpcs/api:dev: [[90m7:31:24 PM[0m] Found 14 errors. Watching for file changes.
+@jpcs/api:dev: 
+@jpcs/api:dev: [2J[3J[H[[90m7:31:37 PM[0m] File change detected. Starting incremental compilation...
+@jpcs/api:dev: 
+@jpcs/api:dev: [[90m7:31:39 PM[0m] Found 0 errors. Watching for file changes.
+@jpcs/api:dev: 
+@jpcs/api:dev: ◇ injected env (9) from ..\..\.env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+@jpcs/api:dev: [Nest] 28092  - 08/30/2026, 7:31:41 PM     LOG [NestFactory] Starting Nest application...
+@jpcs/api:dev: [Nest] 28092  - 08/30/2026, 7:31:41 PM     LOG [InstanceLoader] AppModule dependencies initialized +23ms
+@jpcs/api:dev: [Nest] 28092  - 08/30/2026, 7:31:41 PM     LOG [RoutesResolver] PublicController {/v1}: +54ms
+@jpcs/api:dev: [Nest] 28092  - 08/30/2026, 7:31:41 PM     LOG [RouterExplorer] Mapped {/v1/server, GET} route +3ms
+@jpcs/api:dev: [Nest] 28092  - 08/30/2026, 7:31:41 PM     LOG [RouterExplorer] Mapped {/v1/servers, GET} route +1ms
+@jpcs/api:dev: [Nest] 28092  - 08/30/2026, 7:31:41 PM     LOG [RouterExplorer] Mapped {/v1/world, GET} route +0ms
+@jpcs/api:dev: [Nest] 28092  - 08/30/2026, 7:31:41 PM     LOG [RouterExplorer] Mapped {/v1/players, GET} route +0ms
+@jpcs/api:dev: [Nest] 28092  - 08/30/2026, 7:31:41 PM     LOG [RouterExplorer] Mapped {/v1/players/new, GET} route +1ms
+@jpcs/api:dev: [Nest] 28092  - 08/30/2026, 7:31:41 PM     LOG [RouterExplorer] Mapped {/v1/players/:uuidOrUsername, GET} route +0ms
+@jpcs/api:dev: [Nest] 28092  - 08/30/2026, 7:31:41 PM     LOG [RoutesResolver] IngestionController {/v1/ingest}: +0ms
+@jpcs/api:dev: [Nest] 28092  - 08/30/2026, 7:31:41 PM     LOG [RouterExplorer] Mapped {/v1/ingest/heartbeat, POST} route +1ms
+@jpcs/api:dev: [Nest] 28092  - 08/30/2026, 7:31:41 PM     LOG [RouterExplorer] Mapped {/v1/ingest/players/join, POST} route +0ms
+@jpcs/api:dev: [Nest] 28092  - 08/30/2026, 7:31:41 PM     LOG [RouterExplorer] Mapped {/v1/ingest/players/quit, POST} route +0ms
+@jpcs/api:dev: [Nest] 28092  - 08/30/2026, 7:31:41 PM     LOG [RouterExplorer] Mapped {/v1/ingest/players/server, POST} route +1ms
+@jpcs/api:dev: [Nest] 28092  - 08/30/2026, 7:31:41 PM     LOG [RouterExplorer] Mapped {/v1/ingest/server/start, POST} route +0ms
+@jpcs/api:dev: [Nest] 28092  - 08/30/2026, 7:31:41 PM     LOG [RouterExplorer] Mapped {/v1/ingest/server/stop, POST} route +0ms
+@jpcs/api:dev: [Nest] 28092  - 08/30/2026, 7:31:42 PM     LOG [NestApplication] Nest application successfully started +303ms
+@jpcs/api:dev: [Nest] 28092  - 08/30/2026, 7:31:42 PM   ERROR [NestApplication] Error: listen EADDRINUSE: address already in use :::3001 +4ms
+@jpcs/api:dev: node:net:2009
+@jpcs/api:dev:     const ex = new UVExceptionWithHostPort(err, 'listen', address, port);
+@jpcs/api:dev:                ^
+@jpcs/api:dev: 
+@jpcs/api:dev: Error: listen EADDRINUSE: address already in use :::3001
+@jpcs/api:dev:     at Server.setupListenHandle [as _listen2] (node:net:2009:16)
+@jpcs/api:dev:     at listenInCluster (node:net:2066:12)
+@jpcs/api:dev:     at Server.listen (node:net:2171:7)
+@jpcs/api:dev:     at ExpressAdapter.listen (C:\Users\gelo\Desktop\dev\mc\node_modules\.pnpm\@nestjs+platform-express@11_e0f81066c5e8ef57c294ad544c4eac88\node_modules\@nestjs\platform-express\adapters\express-adapter.js:115:32)
+@jpcs/api:dev:     at C:\Users\gelo\Desktop\dev\mc\node_modules\.pnpm\@nestjs+core@11.2.3_@nestjs_2feb1f53c085af1a0356bfebc71d4fd7\node_modules\@nestjs\core\nest-application.js:191:30
+@jpcs/api:dev:     at new Promise (<anonymous>)
+@jpcs/api:dev:     at NestApplication.listen (C:\Users\gelo\Desktop\dev\mc\node_modules\.pnpm\@nestjs+core@11.2.3_@nestjs_2feb1f53c085af1a0356bfebc71d4fd7\node_modules\@nestjs\core\nest-application.js:181:16)
+@jpcs/api:dev:     at async bootstrap (C:\Users\gelo\Desktop\dev\mc\apps\api\src\main.ts:4:61) {
+@jpcs/api:dev:   code: 'EADDRINUSE',
+@jpcs/api:dev:   errno: -4091,
+@jpcs/api:dev:   syscall: 'listen',
+@jpcs/api:dev:   address: '::',
+@jpcs/api:dev:   port: 3001
+@jpcs/api:dev: }
+@jpcs/api:dev: 
+@jpcs/api:dev: Node.js v24.18.0
+@jpcs/api:dev: [ELIFECYCLE] Command failed with exit code 4294967295.
+@jpcs/web:dev: [?25h
+
+ Tasks:    0 successful, 2 total
+Cached:    0 cached, 2 total
+  Time:    16m39.056s 
+Failed:    @jpcs/api#dev
+
+[ELIFECYCLE] Command failed with exit code 4294967295.
