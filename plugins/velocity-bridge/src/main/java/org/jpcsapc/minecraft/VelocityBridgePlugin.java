@@ -89,7 +89,7 @@ public final class VelocityBridgePlugin {
   private void sendHeartbeat(String key, RegisteredServer server) {
     String players = server.getPlayersConnected().stream().map(player -> "\"" + player.getUniqueId() + "\"").reduce((a, b) -> a + "," + b).orElse("");
     int count = server.getPlayersConnected().size();
-    send("/heartbeat", "{\"serverKey\":\"" + key + "\",\"serverStartedAt\":\"" + startedAt + "\",\"version\":\"" + escape(proxy.getVersion().getVersion()) + "\",\"playersOnline\":" + count + ",\"playersMax\":" + config.maxPlayers + ",\"onlinePlayerUuids\":[" + players + "]}");
+    server.ping().thenAccept(ping -> send("/heartbeat", "{\"serverKey\":\"" + key + "\",\"serverStartedAt\":\"" + startedAt + "\",\"version\":\"" + escape(ping.getVersion().getName()) + "\",\"playersOnline\":" + count + ",\"playersMax\":" + config.maxPlayers + ",\"onlinePlayerUuids\":[" + players + "]}"));
   }
 
   private String keyFor(RegisteredServer server) { return config.backends.entrySet().stream().filter(entry -> entry.getValue().equals(server.getServerInfo().getName())).map(Map.Entry::getKey).findFirst().orElse(null); }
