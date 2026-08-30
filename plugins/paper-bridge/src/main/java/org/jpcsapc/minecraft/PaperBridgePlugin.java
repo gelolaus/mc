@@ -2,6 +2,7 @@ package org.jpcsapc.minecraft;
 
 import com.destroystokyo.paper.profile.PlayerProfile;
 import com.destroystokyo.paper.profile.ProfileProperty;
+import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -9,6 +10,7 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.Base64;
+import java.util.UUID;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -31,13 +33,20 @@ public final class PaperBridgePlugin extends JavaPlugin implements Listener {
 
   @EventHandler
   public void onJoin(PlayerJoinEvent event) {
-    getServer().getScheduler().runTaskLaterAsynchronously(this, () -> reportSkin(event.getPlayer()), 40L);
+    UUID uuid = event.getPlayer().getUniqueId();
+    getServer().getScheduler().runTaskLaterAsynchronously(this, () -> {
+      Player player = getServer().getPlayer(uuid);
+      if (player != null) reportSkin(player);
+    }, 40L);
   }
 
   private void reportSkin(Player player) {
     if (!player.isOnline()) return;
     String hash = textureHash(player);
-    if (hash == null) return;
+    if (hash == null) {
+      getLogger().warning("No textures property for " + player.getName() + " — SkinRestorer may only be on Velocity");
+      return;
+    }
     String json = "{\"uuid\":\"" + player.getUniqueId() + "\",\"skinTextureHash\":\"" + escape(hash) + "\"}";
     send("/players/skin", json);
   }

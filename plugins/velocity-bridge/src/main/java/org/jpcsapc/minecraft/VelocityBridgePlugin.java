@@ -7,7 +7,7 @@ import com.velocitypowered.api.event.connection.PostLoginEvent;
 import com.velocitypowered.api.event.player.ServerConnectedEvent;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
-import com.velocitypowered.api.plugin.Plugin;
+import com.velocitypowered.api.plugin.Dependency;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ProxyServer;
@@ -23,11 +23,14 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.Map;
 import java.util.Properties;
+import com.velocitypowered.api.plugin.Plugin;
+import net.skinsrestorer.api.SkinsRestorer;
+import net.skinsrestorer.api.SkinsRestorerProvider;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
 
-@Plugin(id = "jpcsvelocitybridge", name = "JPCS Velocity Bridge", version = "1.0.1")
+@Plugin(id = "jpcsvelocitybridge", name = "JPCS Velocity Bridge", version = "1.0.3", dependencies = {@Dependency(id = "skinsrestorer", optional = true)})
 public final class VelocityBridgePlugin {
   private final ProxyServer proxy;
   private final Logger logger;
@@ -36,6 +39,7 @@ public final class VelocityBridgePlugin {
   private final Map<UUID, Instant> joinedAt = new ConcurrentHashMap<>();
   private final Instant startedAt = Instant.now();
   private BridgeConfig config;
+  private SkinReporter skinReporter;
 
   @Inject
   public VelocityBridgePlugin(ProxyServer proxy, Logger logger, @DataDirectory Path dataDirectory) {
@@ -47,6 +51,14 @@ public final class VelocityBridgePlugin {
   @Subscribe
   public void initialize(ProxyInitializeEvent event) {
     try { config = BridgeConfig.load(dataDirectory); } catch (IOException exception) { throw new IllegalStateException("Cannot load JPCS bridge config", exception); }
+    SkinsRestorer skinsRestorer = null;
+    try {
+      skinsRestorer = SkinsRestorerProvider.get();
+      logger.info("JPCS bridge: using SkinRestorer for skin reporting");
+    } catch (Exception exception) {
+      logger.warn("JPCS bridge: SkinRestorer unavailable, using GameProfile fallback only");
+    }
+    skinReporter = new SkinReporter(skinsRestorer, logger);
     for (String key : config.backends.keySet()) send("/server/start", "{\"serverKey\":\"" + key + "\",\"serverStartedAt\":\"" + startedAt + "\",\"version\":\"" + escape(proxy.getVersion().getVersion()) + "\"}");
     heartbeat();
     proxy.getScheduler().buildTask(this, this::heartbeat).repeat(Duration.ofSeconds(30)).schedule();
@@ -58,6 +70,12 @@ public final class VelocityBridgePlugin {
     Instant at = Instant.now();
     joinedAt.put(player.getUniqueId(), at);
     send("/players/join", "{\"uuid\":\"" + player.getUniqueId() + "\",\"username\":\"" + escape(player.getUsername()) + "\",\"joinedAt\":\"" + at + "\"}");
+    scheduleSkinReport(player);
+  }
+
+  private void scheduleSkinReport(Player player) {
+    UUID uuid = player.getUniqueId();
+    proxy.getScheduler().buildTask(this, () -> proxy.getPlayer(uuid).ifPresent(this::reportSkin)).delay(Duration.ofSeconds(5)).schedule();
   }
 
   @Subscribe
@@ -66,6 +84,17 @@ public final class VelocityBridgePlugin {
     if (key == null) return;
     Player player = event.getPlayer();
     send("/players/server", "{\"uuid\":\"" + player.getUniqueId() + "\",\"serverKey\":\"" + key + "\",\"connectedAt\":\"" + Instant.now() + "\"}");
+    scheduleSkinReport(player);
+  }
+
+  private void reportSkin(Player player) {
+    String hash = skinReporter.textureHash(player);
+    if (hash == null) {
+      logger.warn("JPCS bridge: no skin texture for {}", player.getUsername());
+      return;
+    }
+    logger.info("JPCS bridge: reporting skin for {} ({})", player.getUsername(), hash.substring(0, 8) + "...");
+    send("/players/skin", "{\"uuid\":\"" + player.getUniqueId() + "\",\"skinTextureHash\":\"" + escape(hash) + "\"}");
   }
 
   @Subscribe

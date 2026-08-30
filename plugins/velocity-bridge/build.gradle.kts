@@ -3,16 +3,18 @@ plugins {
 }
 
 group = "org.jpcsapc.minecraft"
-version = "1.0.1"
+version = "1.0.3"
 
 repositories {
   mavenCentral()
   maven("https://repo.papermc.io/repository/maven-public/")
+  maven("https://repo.codemc.io/repository/maven-public/")
 }
 
 dependencies {
   compileOnly("com.velocitypowered:velocity-api:4.1.0-SNAPSHOT")
   annotationProcessor("com.velocitypowered:velocity-api:4.1.0-SNAPSHOT")
+  compileOnly("net.skinsrestorer:skinsrestorer-api:15.12.4")
 }
 
 java {
