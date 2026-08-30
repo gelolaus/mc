@@ -1,2 +1,1 @@
-{ "version": 2, "buildCommand": "pnpm --filter @jpcs/api build", "outputDirectory": "dist" }
-
+{ "version": 2, "buildCommand": "pnpm --filter @jpcs/api prisma:generate" }
