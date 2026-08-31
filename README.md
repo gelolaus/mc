@@ -34,7 +34,7 @@ The bridge is not included. A Paper, Spigot, or sidecar bridge should send HTTPS
 
 | Endpoint | Purpose |
 | --- | --- |
-| `POST /v1/ingest/heartbeat` | `{ serverStartedAt, version, playersOnline, playersMax, onlinePlayerUuids }` every 30 to 60 seconds |
+| `POST /v1/ingest/heartbeat` | `{ serverStartedAt, version, playersOnline, playersMax, onlinePlayers: [{ uuid, username }] }` every 30 seconds |
 | `POST /v1/ingest/players/join` | `{ uuid, username, joinedAt }` |
 | `POST /v1/ingest/players/quit` | `{ uuid, username, leftAt, sessionPlaytimeSeconds }` |
 | `POST /v1/ingest/server/start` | `{ serverStartedAt, version? }` |
@@ -49,4 +49,3 @@ The heartbeat timeout is `MINECRAFT_HEARTBEAT_TIMEOUT_SECONDS`, defaulting to 12
 ## Vercel
 
 Create two Vercel projects pointing at this monorepo. Set the first root directory to `apps/web` and attach `mc.jpcs-apc.org`; set the second root directory to `apps/api` and attach `api.mc.jpcs-apc.org`. Add database and Minecraft secret variables only to the API project. Add `NEXT_PUBLIC_API_URL=https://api.mc.jpcs-apc.org` and, optionally, `NEXT_PUBLIC_WORLD_MAP_URL` to the web project. Vercel does not need persistent process memory; all durable state is in PostgreSQL.
-

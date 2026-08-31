@@ -14,6 +14,7 @@ describe('ingest DTOs', () => {
       playersOnline: 1,
       playersMax: 120,
       onlinePlayerUuids: [offlineUuid],
+      onlinePlayers: [{ uuid: offlineUuid, username: 'xu_meekah' }],
     });
     const join = plainToInstance(JoinDto, {
       uuid: offlineUuid,
@@ -28,6 +29,7 @@ describe('ingest DTOs', () => {
     });
     const connected = plainToInstance(PlayerServerDto, {
       uuid: offlineUuid,
+      username: 'xu_meekah',
       serverKey: 'survival',
       connectedAt: '2026-08-30T13:32:24.000Z',
     });

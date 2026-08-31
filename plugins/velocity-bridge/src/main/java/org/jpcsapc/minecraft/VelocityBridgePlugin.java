@@ -23,6 +23,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 import com.velocitypowered.api.plugin.Plugin;
 import net.skinsrestorer.api.SkinsRestorer;
 import net.skinsrestorer.api.SkinsRestorerProvider;
@@ -30,13 +31,14 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
 
-@Plugin(id = "jpcsvelocitybridge", name = "JPCS Velocity Bridge", version = "1.0.3", dependencies = {@Dependency(id = "skinsrestorer", optional = true)})
+@Plugin(id = "jpcsvelocitybridge", name = "JPCS Velocity Bridge", version = "1.0.4", dependencies = {@Dependency(id = "skinsrestorer", optional = true)})
 public final class VelocityBridgePlugin {
   private final ProxyServer proxy;
   private final Logger logger;
   private final Path dataDirectory;
   private final HttpClient http = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
   private final Map<UUID, Instant> joinedAt = new ConcurrentHashMap<>();
+  private final Set<UUID> backendSessions = ConcurrentHashMap.newKeySet();
   private final Instant startedAt = Instant.now();
   private BridgeConfig config;
   private SkinReporter skinReporter;
@@ -67,10 +69,7 @@ public final class VelocityBridgePlugin {
   @Subscribe
   public void login(PostLoginEvent event) {
     Player player = event.getPlayer();
-    Instant at = Instant.now();
-    joinedAt.put(player.getUniqueId(), at);
-    send("/players/join", "{\"uuid\":\"" + player.getUniqueId() + "\",\"username\":\"" + escape(player.getUsername()) + "\",\"joinedAt\":\"" + at + "\"}");
-    scheduleSkinReport(player);
+    joinedAt.put(player.getUniqueId(), Instant.now());
   }
 
   private void scheduleSkinReport(Player player) {
@@ -83,7 +82,12 @@ public final class VelocityBridgePlugin {
     String key = keyFor(event.getServer());
     if (key == null) return;
     Player player = event.getPlayer();
-    send("/players/server", "{\"uuid\":\"" + player.getUniqueId() + "\",\"serverKey\":\"" + key + "\",\"connectedAt\":\"" + Instant.now() + "\"}");
+    Instant connectedAt = Instant.now();
+    if (backendSessions.add(player.getUniqueId())) {
+      send("/players/join", "{\"uuid\":\"" + player.getUniqueId() + "\",\"username\":\"" + escape(player.getUsername()) + "\",\"joinedAt\":\"" + connectedAt + "\",\"serverKey\":\"" + key + "\"}");
+    } else {
+      send("/players/server", "{\"uuid\":\"" + player.getUniqueId() + "\",\"username\":\"" + escape(player.getUsername()) + "\",\"serverKey\":\"" + key + "\",\"connectedAt\":\"" + connectedAt + "\"}");
+    }
     scheduleSkinReport(player);
   }
 
@@ -103,6 +107,7 @@ public final class VelocityBridgePlugin {
     Instant leftAt = Instant.now();
     long seconds = Duration.between(joinedAt.getOrDefault(player.getUniqueId(), leftAt), leftAt).toSeconds();
     joinedAt.remove(player.getUniqueId());
+    if (!backendSessions.remove(player.getUniqueId())) return;
     send("/players/quit", "{\"uuid\":\"" + player.getUniqueId() + "\",\"username\":\"" + escape(player.getUsername()) + "\",\"leftAt\":\"" + leftAt + "\",\"sessionPlaytimeSeconds\":" + Math.max(0, seconds) + "}");
   }
 
@@ -116,9 +121,12 @@ public final class VelocityBridgePlugin {
   }
 
   private void sendHeartbeat(String key, RegisteredServer server) {
-    String players = server.getPlayersConnected().stream().map(player -> "\"" + player.getUniqueId() + "\"").reduce((a, b) -> a + "," + b).orElse("");
+    String players = server.getPlayersConnected().stream().map(player -> {
+      backendSessions.add(player.getUniqueId());
+      return "{\"uuid\":\"" + player.getUniqueId() + "\",\"username\":\"" + escape(player.getUsername()) + "\"}";
+    }).reduce((a, b) -> a + "," + b).orElse("");
     int count = server.getPlayersConnected().size();
-    server.ping().thenAccept(ping -> send("/heartbeat", "{\"serverKey\":\"" + key + "\",\"serverStartedAt\":\"" + startedAt + "\",\"version\":\"" + escape(ping.getVersion().getName()) + "\",\"playersOnline\":" + count + ",\"playersMax\":" + config.maxPlayers + ",\"onlinePlayerUuids\":[" + players + "]}"));
+    server.ping().thenAccept(ping -> send("/heartbeat", "{\"serverKey\":\"" + key + "\",\"serverStartedAt\":\"" + startedAt + "\",\"version\":\"" + escape(ping.getVersion().getName()) + "\",\"playersOnline\":" + count + ",\"playersMax\":" + config.maxPlayers + ",\"onlinePlayers\":[" + players + "]}"));
   }
 
   private String keyFor(RegisteredServer server) { return config.backends.entrySet().stream().filter(entry -> entry.getValue().equals(server.getServerInfo().getName())).map(Map.Entry::getKey).findFirst().orElse(null); }
