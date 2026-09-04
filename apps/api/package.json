@@ -12,7 +12,8 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:seed": "prisma db seed",
-    "backfill:first-joins": "ts-node scripts/backfill-first-joins.ts"
+    "backfill:first-joins": "ts-node scripts/backfill-first-joins.ts",
+    "cleanup:false-cornbread": "ts-node scripts/remove-false-cornbread.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.1.6",

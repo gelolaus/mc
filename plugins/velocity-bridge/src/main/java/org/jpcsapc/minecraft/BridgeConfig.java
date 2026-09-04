@@ -16,10 +16,10 @@ final class BridgeConfig {
   static BridgeConfig load(Path dataDirectory) throws IOException {
     Files.createDirectories(dataDirectory);
     Path file = dataDirectory.resolve("config.properties");
-    if (Files.notExists(file)) Files.writeString(file, "api-url=https://api.mc.jpcs-apc.org\ningest-secret=replace-me\nmax-players=100\nsurvival-server=survival\ncreative-server=creative\n");
+    if (Files.notExists(file)) Files.writeString(file, "api-url=https://api.mc.jpcs-apc.org\ningest-secret=replace-me\nmax-players=100\nlobby-server=lobby\nsurvival-server=survival\ncreative-server=creative\n");
     Properties properties = new Properties(); try (var input = Files.newInputStream(file)) { properties.load(input); }
     String secret = properties.getProperty("ingest-secret", ""); if (secret.equals("replace-me") || secret.isBlank()) throw new IllegalStateException("Set ingest-secret in " + file);
-    Map<String, String> backends = new LinkedHashMap<>(); backends.put("survival", properties.getProperty("survival-server", "survival")); backends.put("creative", properties.getProperty("creative-server", "creative"));
+    Map<String, String> backends = new LinkedHashMap<>(); backends.put("lobby", properties.getProperty("lobby-server", "lobby")); backends.put("survival", properties.getProperty("survival-server", "survival")); backends.put("creative", properties.getProperty("creative-server", "creative"));
     return new BridgeConfig(properties.getProperty("api-url", ""), secret, Integer.parseInt(properties.getProperty("max-players", "100")), backends);
   }
 }

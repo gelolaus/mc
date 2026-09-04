@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 
 describe('player profile', () => {
   it('renders compact semantic statistics without nested empty panels', () => {
-    const page = readFileSync(fileURLToPath(new URL('./[player]/page.tsx', import.meta.url)), 'utf8');
+    const page = readFileSync(fileURLToPath(new URL('./[player]/player-profile.tsx', import.meta.url)), 'utf8');
 
     expect(page).toContain('profile-identity');
     expect(page).toContain('profile-stats');

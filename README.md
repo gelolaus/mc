@@ -30,12 +30,12 @@ Run `pnpm db:migrate` to create the schema. Use a serverless PostgreSQL provider
 
 ## Minecraft bridge
 
-The bridge is not included. A Paper, Spigot, or sidecar bridge should send HTTPS JSON with `Authorization: Bearer <MINECRAFT_INGEST_SECRET>`.
+The Velocity bridge is in `plugins/velocity-bridge`. It tracks successful backend membership for `lobby`, `survival`, and `creative`; a proxy login by itself does not create a player. Configure the exact Velocity backend names with `lobby-server`, `survival-server`, and `creative-server`. The bridge sends HTTPS JSON with `Authorization: Bearer <MINECRAFT_INGEST_SECRET>`.
 
 | Endpoint | Purpose |
 | --- | --- |
-| `POST /v1/ingest/heartbeat` | `{ serverStartedAt, version, playersOnline, playersMax, onlinePlayers: [{ uuid, username }] }` every 30 seconds |
-| `POST /v1/ingest/players/join` | `{ uuid, username, joinedAt }` |
+| `POST /v1/ingest/heartbeat` | `{ serverKey, serverStartedAt, version, playersOnline, playersMax, onlinePlayers: [{ uuid, username }] }` every 30 seconds |
+| `POST /v1/ingest/players/join` | `{ uuid, username, joinedAt, serverKey }` after the first successful backend connection |
 | `POST /v1/ingest/players/quit` | `{ uuid, username, leftAt, sessionPlaytimeSeconds }` |
 | `POST /v1/ingest/server/start` | `{ serverStartedAt, version? }` |
 | `POST /v1/ingest/server/stop` | graceful shutdown notification |

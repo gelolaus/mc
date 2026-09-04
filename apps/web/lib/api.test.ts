@@ -13,7 +13,7 @@ describe('player avatars', () => {
 
   it('uses stored skin texture hashes in player cards and profiles', () => {
     const slot = readFileSync(fileURLToPath(new URL('../components/player/player-slot.tsx', import.meta.url)), 'utf8');
-    const profile = readFileSync(fileURLToPath(new URL('../app/players/[player]/page.tsx', import.meta.url)), 'utf8');
+    const profile = readFileSync(fileURLToPath(new URL('../app/players/[player]/player-profile.tsx', import.meta.url)), 'utf8');
     expect(slot).toContain('avatar(player)');
     expect(profile).toContain('avatar(player)');
   });

@@ -1,1 +1,1 @@
-{"id":"jpcsvelocitybridge","name":"JPCS Velocity Bridge","version":"1.0.3","authors":[],"dependencies":[{"id":"skinsrestorer","optional":true}],"provides":[],"main":"org.jpcsapc.minecraft.VelocityBridgePlugin"}
+{"id":"jpcsvelocitybridge","name":"JPCS Velocity Bridge","version":"1.0.5","authors":[],"dependencies":[{"id":"skinsrestorer","optional":true}],"provides":[],"main":"org.jpcsapc.minecraft.VelocityBridgePlugin"}

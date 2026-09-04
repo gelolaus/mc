@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { DatabaseService } from './database.service';
 import { HeartbeatDto, JoinDto, PlayerServerDto, PlayerSkinDto, QuitDto, StartDto, StopDto } from './dto';
+import { serverDisplayNames } from './server-keys';
 
 @Injectable()
 export class IngestionService {
   constructor(private readonly db: DatabaseService) {}
 
-  private displayName(serverKey: string) { return serverKey === 'survival' ? 'Survival' : 'Creative'; }
+  private displayName(serverKey: string) { return serverDisplayNames[serverKey as keyof typeof serverDisplayNames] ?? serverKey; }
 
   async heartbeat(input: HeartbeatDto) {
     const at = new Date();
@@ -32,7 +33,11 @@ export class IngestionService {
   async join(input: JoinDto) {
     const joinedAt = new Date(input.joinedAt);
     const skin = input.skinTextureHash ? { skinTextureHash: input.skinTextureHash } : {};
-    await this.db.player.upsert({ where: { minecraftUuid: input.uuid }, create: { minecraftUuid: input.uuid, username: input.username, firstJoinedAt: joinedAt, lastJoinedAt: joinedAt, lastSeenAt: joinedAt, sessionCount: 1, online: true, currentServerKey: input.serverKey, ...skin }, update: { username: input.username, lastJoinedAt: joinedAt, lastSeenAt: joinedAt, sessionCount: { increment: 1 }, online: true, currentServerKey: input.serverKey, ...skin } });
+    await this.db.$transaction([
+      this.db.player.updateMany({ where: { minecraftUuid: input.uuid, lastJoinedAt: { lt: joinedAt } }, data: { lastJoinedAt: joinedAt, sessionCount: { increment: 1 } } }),
+      this.db.player.updateMany({ where: { minecraftUuid: input.uuid, lastSeenAt: { lte: joinedAt } }, data: { username: input.username, lastSeenAt: joinedAt, online: true, currentServerKey: input.serverKey, ...skin } }),
+      this.db.player.upsert({ where: { minecraftUuid: input.uuid }, create: { minecraftUuid: input.uuid, username: input.username, firstJoinedAt: joinedAt, lastJoinedAt: joinedAt, lastSeenAt: joinedAt, sessionCount: 1, online: true, currentServerKey: input.serverKey, ...skin }, update: {} }),
+    ]);
     return { ok: true };
   }
 

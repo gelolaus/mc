@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 
 describe('homepage', () => {
   it('includes server list and player sections', () => {
-    const page = readFileSync(fileURLToPath(new URL('./page.tsx', import.meta.url)), 'utf8');
+    const page = readFileSync(fileURLToPath(new URL('./home-live.tsx', import.meta.url)), 'utf8');
     expect(page).toContain('JPCS-APC');
     expect(page).toContain('ServerList');
     expect(page).toContain('PlayerStrip');

@@ -12,3 +12,7 @@ coverage
 pnpm-*.log
 .neon
 .env.local
+plugins/velocity-bridge/build/classes/java/test/
+plugins/velocity-bridge/build/reports/tests/
+plugins/velocity-bridge/build/test-results/
+plugins/velocity-bridge/build/tmp/compileTestJava/

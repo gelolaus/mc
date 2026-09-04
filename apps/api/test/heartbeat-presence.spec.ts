@@ -53,4 +53,31 @@ describe('heartbeat player presence', () => {
     expect(db.players.get(liveUuid)).toMatchObject({ username: 'Gelo', online: true, currentServerKey: 'survival' });
     expect(db.players.get(staleProxyUuid)).toMatchObject({ online: false, currentServerKey: null });
   });
+
+  it('creates a lobby player and moves them without starting another session', async () => {
+    const db = database();
+    const service = new IngestionService(db);
+
+    await service.heartbeat({
+      serverKey: 'lobby',
+      serverStartedAt: '2026-09-04T00:00:00.000Z',
+      version: 'Paper 26.2',
+      playersOnline: 1,
+      playersMax: 60,
+      onlinePlayers: [{ uuid: liveUuid, username: 'Gelo' }],
+    } as any);
+    await service.playerServer({
+      uuid: liveUuid,
+      username: 'Gelo',
+      serverKey: 'survival',
+      connectedAt: '2026-09-04T00:01:00.000Z',
+    } as any);
+
+    expect(db.players.get(liveUuid)).toMatchObject({
+      username: 'Gelo',
+      online: true,
+      currentServerKey: 'survival',
+      sessionCount: 1,
+    });
+  });
 });

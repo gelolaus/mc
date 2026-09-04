@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
-import { HeartbeatDto, JoinDto, PlayerServerDto, QuitDto } from '../src/dto';
+import { HeartbeatDto, JoinDto, PlayerServerDto, QuitDto, StartDto, StopDto } from '../src/dto';
 
 const offlineUuid = 'c2255bd2-ccb1-3a3f-a918-2cb5cb483b14';
 
@@ -38,5 +38,37 @@ describe('ingest DTOs', () => {
     expect(await validate(join)).toEqual([]);
     expect(await validate(quit)).toEqual([]);
     expect(await validate(connected)).toEqual([]);
+  });
+
+  it('accepts lobby as a confirmed backend', async () => {
+    const heartbeat = plainToInstance(HeartbeatDto, {
+      serverKey: 'lobby',
+      serverStartedAt: '2026-09-04T00:00:00.000Z',
+      version: 'Paper 26.2',
+      playersOnline: 1,
+      playersMax: 60,
+      onlinePlayers: [{ uuid: offlineUuid, username: 'xu_meekah' }],
+    });
+    const join = plainToInstance(JoinDto, {
+      uuid: offlineUuid,
+      username: 'xu_meekah',
+      joinedAt: '2026-09-04T00:00:01.000Z',
+      serverKey: 'lobby',
+    });
+    const connected = plainToInstance(PlayerServerDto, {
+      uuid: offlineUuid,
+      username: 'xu_meekah',
+      serverKey: 'lobby',
+      connectedAt: '2026-09-04T00:00:01.000Z',
+    });
+    const start = plainToInstance(StartDto, {
+      serverKey: 'lobby',
+      serverStartedAt: '2026-09-04T00:00:00.000Z',
+    });
+    const stop = plainToInstance(StopDto, { serverKey: 'lobby' });
+
+    for (const dto of [heartbeat, join, connected, start, stop]) {
+      expect(await validate(dto)).toEqual([]);
+    }
   });
 });

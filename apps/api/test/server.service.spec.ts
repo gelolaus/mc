@@ -17,7 +17,24 @@ describe('ServerService', () => {
     const started = new Date(Date.now() - 65_000);
     const db = { serverState: { findMany: async () => [{ serverKey: 'survival', displayName: 'Survival', lastHeartbeatAt: new Date(), serverStartedAt: started, stoppedAt: null, playersOnline: 1, playersMax: 50, version: '26.2' }] }, world } as any;
 
-    const [survival] = await new ServerService(db).publicStates();
+    const survival = (await new ServerService(db).publicStates()).find((server) => server.serverKey === 'survival')!;
     expect(survival.uptimeSeconds).toBeGreaterThanOrEqual(64);
+  });
+
+  it('sums backend players without multiplying the shared network capacity', async () => {
+    process.env.MINECRAFT_HEARTBEAT_TIMEOUT_SECONDS = '120';
+    const current = new Date();
+    const db = {
+      serverState: {
+        findMany: async () => [
+          { serverKey: 'lobby', lastHeartbeatAt: current, stoppedAt: null, playersOnline: 1, playersMax: 60 },
+          { serverKey: 'survival', lastHeartbeatAt: current, stoppedAt: null, playersOnline: 2, playersMax: 60 },
+          { serverKey: 'creative', lastHeartbeatAt: current, stoppedAt: null, playersOnline: 3, playersMax: 60 },
+        ],
+      },
+      world,
+    } as any;
+
+    await expect(new ServerService(db).publicState()).resolves.toMatchObject({ playersOnline: 6, playersMax: 60 });
   });
 });

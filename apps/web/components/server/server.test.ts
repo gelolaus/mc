@@ -11,7 +11,6 @@ describe('server list', () => {
     expect(row).toContain('playersOnline');
     expect(row).toContain('server-beacon');
     expect(list).toContain('server-list');
-    expect(list).toContain('/v1/servers');
-    expect(list).toContain('30000');
+    expect(list).toContain('servers.map');
   });
 });

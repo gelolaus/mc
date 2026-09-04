@@ -3,19 +3,25 @@
 import { useEffect, useState } from 'react';
 import { PlayerGrid, PlayerStrip } from '../../components';
 import type { Player } from '../../lib/api';
+import { refreshPlayers } from '../../lib/live-data';
 
 export function PlayerDirectory({ initial }: { initial: Player[] }) {
   const [players, setPlayers] = useState(initial);
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    const timer = setTimeout(async () => {
-      try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001'}/v1/players?search=${encodeURIComponent(search)}`);
-        if (response.ok) setPlayers(await response.json());
-      } catch {}
-    }, 180);
-    return () => clearTimeout(timer);
+    let active = true;
+    const update = () => setPlayers((current) => {
+      void refreshPlayers(current, search).then((next) => { if (active) setPlayers(next); });
+      return current;
+    });
+    const debounce = setTimeout(update, 180);
+    const interval = setInterval(update, 30_000);
+    return () => {
+      active = false;
+      clearTimeout(debounce);
+      clearInterval(interval);
+    };
   }, [search]);
 
   const online = players.filter((player) => player.online);
