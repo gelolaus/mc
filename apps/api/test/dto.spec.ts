@@ -1,12 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import { plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
-import { HeartbeatDto, JoinDto, PlayerServerDto, QuitDto, StartDto, StopDto } from '../src/dto';
+import { HeartbeatDto, JoinDto, PlayerServerDto, PlayerSkinDto, QuitDto, StartDto, StopDto } from '../src/dto';
 
 const offlineUuid = 'c2255bd2-ccb1-3a3f-a918-2cb5cb483b14';
+const floodgateUuid = '00000000-0000-0000-0009-01f0c67e24e5';
 
 describe('ingest DTOs', () => {
-  it('accepts UUID v3 player ids from Velocity offline-mode and Floodgate', async () => {
+  it('accepts UUID v3 player ids from Velocity offline-mode', async () => {
     const heartbeat = plainToInstance(HeartbeatDto, {
       serverKey: 'survival',
       serverStartedAt: '2026-08-30T13:30:49.536Z',
@@ -38,6 +39,44 @@ describe('ingest DTOs', () => {
     expect(await validate(join)).toEqual([]);
     expect(await validate(quit)).toEqual([]);
     expect(await validate(connected)).toEqual([]);
+  });
+
+  it('accepts canonical Floodgate player ids across player ingestion', async () => {
+    const heartbeat = plainToInstance(HeartbeatDto, {
+      serverKey: 'lobby',
+      serverStartedAt: '2026-09-04T00:00:00.000Z',
+      version: 'Paper 26.2',
+      playersOnline: 1,
+      playersMax: 60,
+      onlinePlayerUuids: [floodgateUuid],
+      onlinePlayers: [{ uuid: floodgateUuid, username: '.BedrockPlayer' }],
+    });
+    const join = plainToInstance(JoinDto, {
+      uuid: floodgateUuid,
+      username: '.BedrockPlayer',
+      joinedAt: '2026-09-04T00:00:01.000Z',
+      serverKey: 'lobby',
+    });
+    const quit = plainToInstance(QuitDto, {
+      uuid: floodgateUuid,
+      username: '.BedrockPlayer',
+      leftAt: '2026-09-04T00:05:00.000Z',
+      sessionPlaytimeSeconds: 299,
+    });
+    const connected = plainToInstance(PlayerServerDto, {
+      uuid: floodgateUuid,
+      username: '.BedrockPlayer',
+      serverKey: 'survival',
+      connectedAt: '2026-09-04T00:00:02.000Z',
+    });
+    const skin = plainToInstance(PlayerSkinDto, {
+      uuid: floodgateUuid,
+      skinTextureHash: 'abc123',
+    });
+
+    for (const dto of [heartbeat, join, quit, connected, skin]) {
+      expect(await validate(dto)).toEqual([]);
+    }
   });
 
   it('accepts lobby as a confirmed backend', async () => {
